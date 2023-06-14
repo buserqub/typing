@@ -32,6 +32,17 @@ body {
     display: flex;
     place-content: center;
 }
+.pressed_key {
+    display: grid;
+    place-content: center;
+    background: green;
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center; 
+    width: 50px;
+}
 .key {
     display: grid;
     place-content: center;
