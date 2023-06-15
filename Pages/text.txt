@@ -1,3 +1,5 @@
+
+<input type="text" size="60">
 <div class = "keyboard_row" id ="row_1">
             <div class = "key" id = "0">Ё</div>
             <div class = "key" id = "1">1</div>
