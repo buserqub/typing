@@ -20,7 +20,7 @@ html {
 body {
   margin-bottom: 60px;
 }
-span {
+.main_text span{
   font-size: 32px;
 }
 #text {
@@ -34,6 +34,17 @@ span {
 }
 #typed {
   color: rgb(50, 200, 20);
+}
+h2 {
+  font-size: 24px;
+}
+.speed {  
+  width: 50%;
+}
+.stats {
+  margin: 0 auto;
+  display: flex;
+  width: 400px;
 }
 .keyboard {
   background: black;

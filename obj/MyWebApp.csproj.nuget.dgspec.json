@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Buser\\MyWebApp\\MyWebApp.csproj": {}
+    "C:\\Users\\Buser\\Documents\\GitHub\\typing\\MyWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Buser\\MyWebApp\\MyWebApp.csproj": {
+    "C:\\Users\\Buser\\Documents\\GitHub\\typing\\MyWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Buser\\MyWebApp\\MyWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Buser\\Documents\\GitHub\\typing\\MyWebApp.csproj",
         "projectName": "MyWebApp",
-        "projectPath": "C:\\Users\\Buser\\MyWebApp\\MyWebApp.csproj",
+        "projectPath": "C:\\Users\\Buser\\Documents\\GitHub\\typing\\MyWebApp.csproj",
         "packagesPath": "C:\\Users\\Buser\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Buser\\MyWebApp\\obj\\",
+        "outputPath": "C:\\Users\\Buser\\Documents\\GitHub\\typing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Buser\\AppData\\Roaming\\NuGet\\NuGet.Config",
