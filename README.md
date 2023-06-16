@@ -7,4 +7,4 @@
 
 # Демонстрация работы
 
-![Keyboard](https://github.com/buserqub/typing/assets/73015330/ad4cec52-8825-4851-a8e7-2bb2d358c840)
+![ezgif-1-9aa2e1da39](https://github.com/buserqub/typing/assets/73015330/af0f4208-969b-4d9b-b35b-dfff61abd34a)
