@@ -9,7 +9,6 @@ function init () {
 		toUpper();
 	else
 		toLower();
-	console.log("-highlight");
 	highlight(cursor.innerHTML);
 }
 document.addEventListener("load", init());
@@ -59,8 +58,12 @@ function toUpper () {
 		keys[i].innerHTML = string[i];
 		keys[i].id = keys[i].innerHTML;
 	}
-	keys[45].innerHTML = ",";
-	keys[45].id = keys.innerHTML;
+	keys = document.getElementById(",");
+	if (keys == null)
+		keys = document.getElementById(".");
+	keys.innerHTML = ",";
+	keys.id = keys.innerHTML;
+
 	keys = document.getElementsByClassName("flex_key");
 	keys[2].innerHTML = "/";
 	keys[2].id = keys.innerHTML;
@@ -78,8 +81,12 @@ function toLower () {
 		keys[i].innerHTML = string[i];
 		keys[i].id = keys[i].innerHTML;
 	}
-	keys[45].innerHTML = ".";
-	keys[45].id = keys.innerHTML;
+	keys = document.getElementById(".");
+	if (keys == null)
+		keys = document.getElementById(",");
+	keys.innerHTML = ".";
+	keys.id = keys.innerHTML;
+
 	keys = document.getElementsByClassName("flex_key");
 	keys[2].innerHTML = "\\";
 	keys[2].id = keys.innerHTML;
@@ -99,6 +106,7 @@ function moveCursor (e) {
 		cursor.innerHTML = text.innerHTML.substring(0, 1);
 		text.innerHTML = text.innerHTML.slice(1);
 		cursor.id = "typing";
+		clear();
 		if (cursor.innerHTML == "")
 			refreshText();
 		else
@@ -106,12 +114,14 @@ function moveCursor (e) {
 				toUpper();
 			else
 				toLower();
+
+		
+		highlight(cursor.innerHTML);
 	} else {
 		errors++;
 		cursor.id = "typing_wrong";
 	}
 	console.log("-highlight");
-	highlight(cursor.innerHTML);
 }
 function highlightSpecial (name, className, id) {
 	let key = document.getElementById(id);
@@ -142,7 +152,6 @@ function refreshText () {
 typedSymbols = 0;
 errors = 0;
 document.onkeypress = function (e) {
-	clear();
 	let typed = document.getElementById("typed");
 	if (typed.innerHTML == "") {
 		refreshStopwatch();
