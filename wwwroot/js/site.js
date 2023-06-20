@@ -3,6 +3,17 @@
 
 // Write your JavaScript code.
 
+function init () {
+	let cursor = document.getElementById("typing");
+	if (cursor.innerHTML == cursor.innerHTML.toUpperCase() && cursor.innerHTML != " ")
+		toUpper();
+	else
+		toLower();
+		console.log("-highlight");
+		highlight(cursor.innerHTML);
+	}
+}
+
 startdate = new Date();
 	clockStart = startdate.getTime();
 function refreshStopwatch() {
@@ -25,29 +36,55 @@ function getSecs() {
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
 	if (key[0] != null) {
-		let elem = document.createElement('div');
-		elem.className = "key";
-		elem.id = key[0].id;
-		elem.innerHTML = key[0].innerHTML;
-
-		key[0].replaceWith(elem);
+		key[0].className = "key";
+	}
+	key = document.getElementsByClassName("pressed_space_key");
+	if (key[0] != null) {
+		key[0].className = "space_key";
+	}
+	key = document.getElementsByClassName("pressed_flex_key");
+	if (key[0] != null) {
+		for (let i = 0; i < key.length; i++)
+			key[i].className = "flex_key";
 	}
 }
 function toUpper () {
 	let keys = document.getElementsByClassName("key");
 	for (let i = 0; i < keys.length; i++) {
 		keys[i].innerHTML = keys[i].innerHTML.toUpperCase();
+		keys[i].id = keys[i].innerHTML;
 	}
+	let string = "Ё!\"№;%:?*()_+";
+	for (let i = 0; i < string.length; i++) {
+		keys[i].innerHTML = string[i];
+		keys[i].id = keys[i].innerHTML;
+	}
+	keys[45].innerHTML = ",";
+	keys[45].id = keys.innerHTML;
+	keys = document.getElementsByClassName("flex_key");
+	keys[2].innerHTML = "/";
+	keys[2].id = keys.innerHTML;
+	keys = document.getElementById("LSHIFT");
+	highlightSpecial(keys.innerHTML, keys.className, keys.id);
 }
 function toLower () {
 	let keys = document.getElementsByClassName("key");
-	console.log(keys);
 	for (let i = 0; i < keys.length; i++) {
-		console.log(keys[i]);
 		keys[i].innerHTML = keys[i].innerHTML.toLowerCase();
+		keys[i].id = keys[i].innerHTML;
 	}
+	let string = "ё1234567890-=";
+	for (let i = 0; i < string.length; i++) {
+		keys[i].innerHTML = string[i];
+		keys[i].id = keys[i].innerHTML;
+	}
+	keys[45].innerHTML = ".";
+	keys[45].id = keys.innerHTML;
+	keys = document.getElementsByClassName("flex_key");
+	keys[2].innerHTML = "\\";
+	keys[2].id = keys.innerHTML;
+	
 }
-
 function moveCursor (e) {
 	let cursor = document.getElementById("typing");
 	if (cursor == null)
@@ -62,12 +99,36 @@ function moveCursor (e) {
 		cursor.innerHTML = text.innerHTML.substring(0, 1);
 		text.innerHTML = text.innerHTML.slice(1);
 		cursor.id = "typing";
-
 		if (cursor.innerHTML == "")
 			refreshText();
+		else
+			if (cursor.innerHTML == cursor.innerHTML.toUpperCase() && cursor.innerHTML != " ")
+				toUpper();
+			else
+				toLower();
+		
+		console.log("-highlight");
+		highlight(cursor.innerHTML);
 	} else {
 		errors++;
 		cursor.id = "typing_wrong";
+	}
+}
+function highlightSpecial (name, className, id) {
+	let key = document.getElementById(id);
+	key.className = "pressed_" + className;
+	key.innerHTML = name;
+}
+function highlight (symbol) {
+	if (symbol == " ") {
+		let key = document.getElementById("SPACE");
+		key.className = "pressed_space_key";
+		key.innerHTML = "Space";
+	}
+	else {
+		let key = document.getElementById(symbol);
+		key.className = "pressed_key";
+		key.innerHTML = symbol;
 	}
 }
 function refreshText () {
@@ -82,23 +143,15 @@ function refreshText () {
 typedSymbols = 0;
 errors = 0;
 document.onkeypress = function (e) {
-	toLower();
+	clear();
 	let typed = document.getElementById("typed");
 	if (typed.innerHTML == "") {
 		refreshStopwatch();
 		typedSymbols = 0;
 		errors = 0;
 	}
-	console.log(e.key);
 	moveCursor(e);
 	if (typedSymbols != 1)
 		document.getElementById("speed").innerHTML = String(Math.round(typedSymbols / initStopwatch() * 60));
 	document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
-	console.log(typedSymbols, errors);
-	clear();
-	
-	let key = document.getElementById(String(e.key.toUpperCase()));
-	key.className = "pressed_key"
-	key.id = String(e.key.toUpperCase());
-	key.innerHTML = e.key;
 }
