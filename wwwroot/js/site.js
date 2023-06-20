@@ -9,10 +9,10 @@ function init () {
 		toUpper();
 	else
 		toLower();
-		console.log("-highlight");
-		highlight(cursor.innerHTML);
-	}
+	console.log("-highlight");
+	highlight(cursor.innerHTML);
 }
+document.addEventListener("load", init());
 
 startdate = new Date();
 	clockStart = startdate.getTime();
@@ -106,13 +106,12 @@ function moveCursor (e) {
 				toUpper();
 			else
 				toLower();
-		
-		console.log("-highlight");
-		highlight(cursor.innerHTML);
 	} else {
 		errors++;
 		cursor.id = "typing_wrong";
 	}
+	console.log("-highlight");
+	highlight(cursor.innerHTML);
 }
 function highlightSpecial (name, className, id) {
 	let key = document.getElementById(id);
