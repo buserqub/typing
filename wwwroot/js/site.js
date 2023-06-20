@@ -11,7 +11,6 @@ function refreshStopwatch() {
 }
 function initStopwatch() { 
 	var thisTime = new Date();
-	console.log((thisTime.getTime() - clockStart)/1000);
 	return (thisTime.getTime() - clockStart)/1000;
 }
 function getSecs() { 
@@ -23,17 +22,29 @@ function getSecs() {
 	document.getElementById("timer-counter").innerHTML = sMins+":"+sSecs;
 	setTimeout('getSecs()', 1000); 
 }
-
-
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
 	if (key[0] != null) {
 		let elem = document.createElement('div');
 		elem.className = "key";
 		elem.id = key[0].id;
-		elem.innerHTML = key[0].innerHTML.toUpperCase();
+		elem.innerHTML = key[0].innerHTML;
 
 		key[0].replaceWith(elem);
+	}
+}
+function toUpper () {
+	let keys = document.getElementsByClassName("key");
+	for (let i = 0; i < keys.length; i++) {
+		keys[i].innerHTML = keys[i].innerHTML.toUpperCase();
+	}
+}
+function toLower () {
+	let keys = document.getElementsByClassName("key");
+	console.log(keys);
+	for (let i = 0; i < keys.length; i++) {
+		console.log(keys[i]);
+		keys[i].innerHTML = keys[i].innerHTML.toLowerCase();
 	}
 }
 
@@ -71,6 +82,7 @@ function refreshText () {
 typedSymbols = 0;
 errors = 0;
 document.onkeypress = function (e) {
+	toLower();
 	let typed = document.getElementById("typed");
 	if (typed.innerHTML == "") {
 		refreshStopwatch();
@@ -84,10 +96,9 @@ document.onkeypress = function (e) {
 	document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
 	console.log(typedSymbols, errors);
 	clear();
-	let elem = document.createElement('div');
-	elem.className = "pressed_key";
-	elem.id = String(e.key.toUpperCase());
-	elem.innerHTML = e.key.toUpperCase();
+	
 	let key = document.getElementById(String(e.key.toUpperCase()));
-	key.replaceWith(elem);
-};
+	key.className = "pressed_key"
+	key.id = String(e.key.toUpperCase());
+	key.innerHTML = e.key;
+}
