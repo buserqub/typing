@@ -67,6 +67,7 @@ function toUpper () {
 	keys = document.getElementsByClassName("flex_key");
 	keys[2].innerHTML = "/";
 	keys[2].id = keys.innerHTML;
+
 	keys = document.getElementById("LSHIFT");
 	highlightSpecial(keys.innerHTML, keys.className, keys.id);
 }
@@ -107,15 +108,16 @@ function moveCursor (e) {
 		text.innerHTML = text.innerHTML.slice(1);
 		cursor.id = "typing";
 		clear();
-		if (cursor.innerHTML == "")
+		if (cursor.innerHTML == "") {
 			refreshText();
+			init();
+		}
 		else
 			if (cursor.innerHTML == cursor.innerHTML.toUpperCase() && cursor.innerHTML != " ")
 				toUpper();
 			else
 				toLower();
 
-		
 		highlight(cursor.innerHTML);
 	} else {
 		errors++;
