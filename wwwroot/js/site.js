@@ -3,6 +3,16 @@
 
 // Write your JavaScript code.
 
+function init () {
+	let cursor = document.getElementById("typing");
+	if (cursor.innerHTML == cursor.innerHTML.toUpperCase() && cursor.innerHTML != " ")
+		toUpper();
+	else
+		toLower();
+	highlight(cursor.innerHTML);
+}
+document.addEventListener("load", init());
+
 startdate = new Date();
 	clockStart = startdate.getTime();
 function refreshStopwatch() {
@@ -11,7 +21,6 @@ function refreshStopwatch() {
 }
 function initStopwatch() { 
 	var thisTime = new Date();
-	console.log((thisTime.getTime() - clockStart)/1000);
 	return (thisTime.getTime() - clockStart)/1000;
 }
 function getSecs() { 
@@ -23,20 +32,67 @@ function getSecs() {
 	document.getElementById("timer-counter").innerHTML = sMins+":"+sSecs;
 	setTimeout('getSecs()', 1000); 
 }
-
-
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
 	if (key[0] != null) {
-		let elem = document.createElement('div');
-		elem.className = "key";
-		elem.id = key[0].id;
-		elem.innerHTML = key[0].innerHTML.toUpperCase();
-
-		key[0].replaceWith(elem);
+		key[0].className = "key";
+	}
+	key = document.getElementsByClassName("pressed_space_key");
+	if (key[0] != null) {
+		key[0].className = "space_key";
+	}
+	key = document.getElementsByClassName("pressed_flex_key");
+	if (key[0] != null) {
+		for (let i = 0; i < key.length; i++)
+			key[i].className = "flex_key";
 	}
 }
+function toUpper () {
+	let keys = document.getElementsByClassName("key");
+	for (let i = 0; i < keys.length; i++) {
+		keys[i].innerHTML = keys[i].innerHTML.toUpperCase();
+		keys[i].id = keys[i].innerHTML;
+	}
+	let string = "Ё!\"№;%:?*()_+";
+	for (let i = 0; i < string.length; i++) {
+		keys[i].innerHTML = string[i];
+		keys[i].id = keys[i].innerHTML;
+	}
+	keys = document.getElementById(",");
+	if (keys == null)
+		keys = document.getElementById(".");
+	keys.innerHTML = ",";
+	keys.id = keys.innerHTML;
 
+	keys = document.getElementsByClassName("flex_key");
+	keys[2].innerHTML = "/";
+	keys[2].id = keys.innerHTML;
+
+	keys = document.getElementById("LSHIFT");
+	highlightSpecial(keys.innerHTML, keys.className, keys.id);
+}
+function toLower () {
+	let keys = document.getElementsByClassName("key");
+	for (let i = 0; i < keys.length; i++) {
+		keys[i].innerHTML = keys[i].innerHTML.toLowerCase();
+		keys[i].id = keys[i].innerHTML;
+	}
+	let string = "ё1234567890-=";
+	for (let i = 0; i < string.length; i++) {
+		keys[i].innerHTML = string[i];
+		keys[i].id = keys[i].innerHTML;
+	}
+	keys = document.getElementById(".");
+	if (keys == null)
+		keys = document.getElementById(",");
+	keys.innerHTML = ".";
+	keys.id = keys.innerHTML;
+
+	keys = document.getElementsByClassName("flex_key");
+	keys[2].innerHTML = "\\";
+	keys[2].id = keys.innerHTML;
+	
+}
 function moveCursor (e) {
 	let cursor = document.getElementById("typing");
 	if (cursor == null)
@@ -51,12 +107,39 @@ function moveCursor (e) {
 		cursor.innerHTML = text.innerHTML.substring(0, 1);
 		text.innerHTML = text.innerHTML.slice(1);
 		cursor.id = "typing";
-
-		if (cursor.innerHTML == "")
+		clear();
+		if (cursor.innerHTML == "") {
 			refreshText();
+			init();
+		}
+		else
+			if (cursor.innerHTML == cursor.innerHTML.toUpperCase() && cursor.innerHTML != " ")
+				toUpper();
+			else
+				toLower();
+
+		highlight(cursor.innerHTML);
 	} else {
 		errors++;
 		cursor.id = "typing_wrong";
+	}
+	console.log("-highlight");
+}
+function highlightSpecial (name, className, id) {
+	let key = document.getElementById(id);
+	key.className = "pressed_" + className;
+	key.innerHTML = name;
+}
+function highlight (symbol) {
+	if (symbol == " ") {
+		let key = document.getElementById("SPACE");
+		key.className = "pressed_space_key";
+		key.innerHTML = "Space";
+	}
+	else {
+		let key = document.getElementById(symbol);
+		key.className = "pressed_key";
+		key.innerHTML = symbol;
 	}
 }
 function refreshText () {
@@ -77,17 +160,8 @@ document.onkeypress = function (e) {
 		typedSymbols = 0;
 		errors = 0;
 	}
-	console.log(e.key);
 	moveCursor(e);
 	if (typedSymbols != 1)
 		document.getElementById("speed").innerHTML = String(Math.round(typedSymbols / initStopwatch() * 60));
 	document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
-	console.log(typedSymbols, errors);
-	clear();
-	let elem = document.createElement('div');
-	elem.className = "pressed_key";
-	elem.id = String(e.key.toUpperCase());
-	elem.innerHTML = e.key.toUpperCase();
-	let key = document.getElementById(String(e.key.toUpperCase()));
-	key.replaceWith(elem);
-};
+}

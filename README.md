@@ -7,4 +7,4 @@
 
 # Демонстрация работы
 
-![ezgif-1-9aa2e1da39](https://github.com/buserqub/typing/assets/73015330/af0f4208-969b-4d9b-b35b-dfff61abd34a)
+![ezgif-5-9fdacb1f89](https://github.com/buserqub/typing/assets/73015330/44ccc629-4482-4c61-a05b-81bebc5e6c49)
