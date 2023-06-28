@@ -200,7 +200,6 @@ function moveCursor (e) {
 		errors++;
 		cursor.id = "typing_wrong";
 	}
-	console.log("-highlight");
 }
 function highlightSpecial (name, className, id) {
 	let key = document.getElementById(id);
@@ -232,6 +231,12 @@ function refreshText () {
 let typedSymbols = 0;
 let errors = 0;
 document.onkeydown = function (e) {
+		if (e.key == "Shift" || e.key == "Alt" || e.key == "Ctrl" || e.key == "Win" || e.key == "Tab")
+			return;
+		for (let i = 1; i <= 12; i++) {
+			if (e.key == "F" + String(i)) 
+				return;
+		}
 	    let typed = document.getElementById("typed");
         if (typed.innerHTML == "") {
             refreshStopwatch();
