@@ -1,0 +1,132 @@
+
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  a {
+    text-decoration: none;
+    color:#000;
+  }
+  ul {
+      list-style: None;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 18px;
+      padding-inline-start: 0px;
+  }
+  ul li {
+      padding: 25px 20px;
+      display: inline-block;
+  }
+
+  body {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+  .main_text span{
+    font-size: 32px;
+  }
+  .sign {
+    width: 16px;
+  }
+  #typing {
+    background: rgb(50, 200, 20);
+  }
+  #typing_wrong {
+    background: rgb(200, 50, 20);
+  }
+  #typed {
+    color: rgb(50, 200, 20);
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .speed {  
+    width: 50%;
+  }
+  .stats {
+    margin: 0 auto;
+    display: flex;
+    width: 600px;
+  }
+  .keyboard {
+    background: black;
+    border-radius: 6px;
+    box-shadow: 1px 1px 8px 0 rgb(0 0 0 / 20%);
+    margin: 0 auto;
+    padding: 3px;
+    width: 800px;
+  }
+  .keyboard_row {
+    display: flex;
+    place-content: center;
+  }
+  .pressed_key {
+    display: grid;
+    place-content: center;
+    background: rgb(140, 200, 255);
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center; 
+    width: 50px;
+  }
+  .pressed_flex_key {
+    display: grid;
+    place-content: center;
+    background: rgb(140, 200, 255);
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center;
+    max-width: 100%;
+    flex: 1;
+  }
+  .pressed_space_key {
+    display: grid;
+    place-content: center;
+    background: rgb(140, 200, 255);
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center;
+    width: 394px;
+  }
+  .key {
+    display: grid;
+    place-content: center;
+    background: white;
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center; 
+    width: 50px;
+  }
+  .flex_key {
+    display: grid;
+    place-content: center;
+    background: white;
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center;
+    max-width: 100%;
+    flex: 1;
+  }
+  .space_key {
+    display: grid;
+    place-content: center;
+    background: white;
+    border-radius: 2px;
+    color: #000;
+    height: 50px;
+    margin: 1.5px;
+    text-align: center;
+    width: 394px;
+  }
