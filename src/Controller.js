@@ -309,26 +309,33 @@ function moveCursor (e) {
             let found = false;
             let keys = document.getElementsByClassName("key");
 
-            for (let i = 0; i < keys.length; i++)
-                if (cursor.innerHTML === keys[i].innerHTML) {
-                    highlight(cursor.innerHTML);
-                    found = true;
-                    break;
-                }
+            if (cursor.innerHTML === " ") {
+                highlightSpecial("Space", "space_key", "SPACE");
+                found = true;
+            }
 
-            console.log(state, registryState);
+            if (found === false) {
+                for (let i = 0; i < keys.length; i++)
+                    if (cursor.innerHTML === keys[i].innerHTML) {
+                        highlight(cursor.innerHTML);
+                        found = true;
+                        break;
+                    }
 
-            if (found === false)
+                console.log(state, registryState);
+
+                if (found === false)
                 changeRegistry();
 
-            console.log(state, registryState);
-            keys = document.getElementsByClassName("key");
-            for (let i = 0; i < keys.length; i++)
-                if (cursor.innerHTML === keys[i].innerHTML) {
-                    highlight(cursor.innerHTML);
-                    found = true;
-                    break;
-                }
+                console.log(state, registryState);
+                keys = document.getElementsByClassName("key");
+                for (let i = 0; i < keys.length; i++)
+                    if (cursor.innerHTML === keys[i].innerHTML) {
+                        highlight(cursor.innerHTML);
+                        found = true;
+                        break;
+                    }
+            }
 
 			/*if (cursor.innerHTML === cursor.innerHTML.toUpperCase() && cursor.innerHTML !== " ")
                 changeRegistry();
@@ -346,14 +353,7 @@ function highlightSpecial (name, className, id) {
 	key.innerHTML = name;
 }
 function highlight (symbol) {
-	if (symbol === " ") {
-		let key = document.getElementById("SPACE");
-		key.className = "pressed_space_key";
-		key.innerHTML = "Space";
-	}
-	else {
-		let key = document.getElementById(symbol);
-        console.log(key);
+	let key = document.getElementById(symbol);
         if (key !== null)
             if (key.className === "key") {
                 key.className = "pressed_key";
@@ -362,16 +362,14 @@ function highlight (symbol) {
                 key.className = "pressed_flex_key";
                 key.innerHTML = symbol;
             }
-	}
 }
 function refreshText () {
 	let cursor = document.getElementById("typing");
 	let typed = document.getElementById("typed");
 	let text = document.getElementById("text");
 	let str = "";
-	console.log(str);
+
 	str = readRandomText();
-	console.log(str);
 
 	cursor.innerHTML = str.substring(0, 1);
 	text.innerHTML = str.slice(1);
@@ -386,11 +384,9 @@ function readRandomText () {
 	    mydata = JSON.parse(JSON.stringify(dataRus));
     if (state === eng)
         mydata = JSON.parse(JSON.stringify(dataEng));
-	let i = getRandomInt(mydata.length - 1);
-	console.log(mydata, i);
 
+	let i = getRandomInt(mydata.length - 1);
 	str = String(mydata[i].text);
-    console.log(str);
 
     return (str);
 }
