@@ -6,7 +6,7 @@ import Controller from './Controller';
 export default function RusTrainer() {
 	return (
 		<div>
-			<h1 class = "main_text"><span id = "typed"></span><span id = "typing">Н</span><span id = "text"></span></h1>
+			<h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1>
 			<br></br>
 			<div class = "keyboard" id ="keyboard">
 				<div class = "keyboard_row" id ="row_1">

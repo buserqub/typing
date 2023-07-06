@@ -8,24 +8,31 @@ const upper = "upper";
 const lower = "lower";
 
 let link = "http://localhost:3000/";
-let registryState = "";
-let state = "";
+let registryState = upper;
+let state = rus;
 
 window.onload = function () {
+    stateSet();
+    refreshText();
+}
+
+function stateSet () {
     if (String(window.location.href) === link + "/" + rus)
             state = "rus";
     if (String(window.location.href) === link + "/" + eng)
             state = "eng";
 }
 
-/* function init () {
+function init () {
+    stateSet();
+
 	let cursor = document.getElementById("typing");
 	if (cursor.innerHTML === cursor.innerHTML.toUpperCase() && cursor.innerHTML !== " ")
 		engToUpper();
 	else
 		engToLower();
 	highlight(cursor.innerHTML);
-} */
+}
 
 let startdate = new Date();
 let clockStart = startdate.getTime();
@@ -41,7 +48,8 @@ function initStopwatch() {
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
 	if (key[0] != null) {
-		key[0].className = "key";
+		for (let i = 0; i < key.length; i++)
+			key[i].className = "key";
 	}
 	key = document.getElementsByClassName("pressed_space_key");
 	if (key[0] != null) {
@@ -54,7 +62,6 @@ function clear() {
 	}
 }
 function rusToUpper () {
-    registryState = upper;
 
 	let keys = document.getElementsByClassName("key");
 	for (let i = 0; i < keys.length; i++) {
@@ -82,7 +89,6 @@ function rusToUpper () {
 	highlightSpecial(keys.innerHTML, keys.className, keys.id);
 }
 function rusToLower () {
-    registryState = lower;
 
 	let keys = document.getElementsByClassName("key");
 	for (let i = 0; i < keys.length; i++) {
@@ -108,7 +114,6 @@ function rusToLower () {
 	
 }
 function engToUpper () {
-    registryState = upper;
 
 	let keys = document.getElementsByClassName("key");
 	for (let i = 0; i < keys.length; i++) {
@@ -188,14 +193,13 @@ function engToUpper () {
 	highlightSpecial(keys.innerHTML, keys.className, keys.id);
 }
 function engToLower () {
-    registryState = lower;
 
 	let keys = document.getElementsByClassName("key");
 	for (let i = 0; i < keys.length; i++) {
 		keys[i].innerHTML = keys[i].innerHTML.toLowerCase();
 		keys[i].id = keys[i].innerHTML;
 	}
-	let string = "ё1234567890-=";
+	let string = "`1234567890-=";
 	for (let i = 0; i < string.length; i++) {
 		keys[i].innerHTML = string[i];
 		keys[i].id = keys[i].innerHTML;
@@ -268,16 +272,20 @@ function engToLower () {
 	
 }
 function changeRegistry () {
-    if (registryState === upper)
+    if (registryState === upper) {
+        registryState = lower;
         if (state === rus)
             rusToLower();
         else if (state === eng)
-            engToLower()
-    else if (registryState === lower)
+            engToLower();
+    }
+    else if (registryState === lower) {
+        registryState = upper;
         if (state === rus)
             rusToUpper();
         else if (state === eng)
             engToUpper()
+    }
 }
 function moveCursor (e) {
 	let cursor = document.getElementById("typing");
@@ -302,18 +310,25 @@ function moveCursor (e) {
             let keys = document.getElementsByClassName("key");
 
             for (let i = 0; i < keys.length; i++)
-            if (cursor.innerHTML === keys[i]) {
-                highlight(cursor.innerHTML);
-                found = true;
-            }
+                if (cursor.innerHTML === keys[i].innerHTML) {
+                    highlight(cursor.innerHTML);
+                    found = true;
+                    break;
+                }
+
+            console.log(state, registryState);
+
             if (found === false)
                 changeRegistry();
 
+            console.log(state, registryState);
+            keys = document.getElementsByClassName("key");
             for (let i = 0; i < keys.length; i++)
-            if (cursor.innerHTML === keys[i]) {
-                highlight(cursor.innerHTML);
-                found = true;
-            }
+                if (cursor.innerHTML === keys[i].innerHTML) {
+                    highlight(cursor.innerHTML);
+                    found = true;
+                    break;
+                }
 
 			/*if (cursor.innerHTML === cursor.innerHTML.toUpperCase() && cursor.innerHTML !== " ")
                 changeRegistry();
@@ -338,6 +353,7 @@ function highlight (symbol) {
 	}
 	else {
 		let key = document.getElementById(symbol);
+        console.log(key);
         if (key !== null)
             if (key.className === "key") {
                 key.className = "pressed_key";
@@ -360,6 +376,8 @@ function refreshText () {
 	cursor.innerHTML = str.substring(0, 1);
 	text.innerHTML = str.slice(1);
 	typed.innerHTML = "";
+
+    init();
 }
 function readRandomText () {
     let str = "";
@@ -370,7 +388,7 @@ function readRandomText () {
         mydata = JSON.parse(JSON.stringify(dataEng));
 	let i = getRandomInt(mydata.length - 1);
 	console.log(mydata, i);
-    
+
 	str = String(mydata[i].text);
     console.log(str);
 
@@ -382,9 +400,10 @@ function getRandomInt(max) {
 
 let typedSymbols = 0;
 let errors = 0;
+
 export default document.onkeydown = function (e) {
 	if (e.key === "Shift" || e.key === "Alt" || e.key === "Ctrl" || e.key === "Win" || e.key === "Tab" || e.key === "CapsLock")
-	return;
+	    return;
 	for (let i = 1; i <= 12; i++) {
 		if (e.key === "F" + String(i)) 
 			return;
