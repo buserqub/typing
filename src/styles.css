@@ -46,7 +46,10 @@
     width: 50%;
   }
   .text {
+    display: flex;
+    place-content: center;
     vertical-align: middle;
+    text-align: center;
     height: 100px;
   }
   .stats {
