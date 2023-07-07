@@ -6,7 +6,10 @@ import Controller from './Controller';
 export default function RusTrainer() {
 	return (
 		<div>
-			<h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1>
+			<div class = "text">
+				<h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1>
+			</div>
+			<script src = {Controller}></script>
 			<br></br>
 			<div class = "keyboard" id ="keyboard">
 				<div class = "keyboard_row" id ="row_1">
@@ -88,7 +91,6 @@ export default function RusTrainer() {
 					<h2><span>Точность: </span><span id = "accuracy">-</span><span> % </span><img  title = "Процент правильно введенных символов от общего количества нажатий клавиш" class = "sign" src={question} alt = "accuracy"></img></h2>
 				</div>
 			</div>
-			<script src = {Controller} defer></script>
 			<br></br>
 		</div>
 	)

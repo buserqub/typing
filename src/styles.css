@@ -45,6 +45,10 @@
   .speed {  
     width: 50%;
   }
+  .text {
+    vertical-align: middle;
+    height: 100px;
+  }
   .stats {
     margin: 0 auto;
     display: flex;
@@ -60,7 +64,6 @@
   }
   .keyboard_row {
     display: flex;
-    place-content: center;
   }
   .pressed_key {
     display: grid;

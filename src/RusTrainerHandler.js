@@ -140,9 +140,8 @@ function refreshText () {
 	let typed = document.getElementById("typed");
 	let text = document.getElementById("text");
 	let str = "";
-	console.log(str);
+	
 	readRandomText(str);
-	console.log(str);
 
 	cursor.innerHTML = str.substring(0, 1);
 	text.innerHTML = str.slice(1);

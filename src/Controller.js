@@ -12,21 +12,24 @@ let registryState = upper;
 let state = rus;
 
 window.onload = function () {
-    stateSet();
-    refreshText();
+	if (String(window.location.href) !== link) {
+		stateSet();
+		highlight("LSHIFT");
+		refreshText();
+	}
 }
 
 function stateSet () {
-    if (String(window.location.href) === link + "/" + rus)
-            state = "rus";
-    if (String(window.location.href) === link + "/" + eng)
-            state = "eng";
+    if (String(window.location.href) === link + rus)
+        state = rus;
+	else
+		if (String(window.location.href) === link + eng)
+			state = eng;
 }
 
 function init () {
 	let cursor = document.getElementById("typing");
-	highlight(cursor.innerHTML);
-	changeRegistry();
+	tryToHighlight(cursor);
 }
 
 let startdate = new Date();
@@ -39,6 +42,12 @@ function refreshStopwatch() {
 function initStopwatch() { 
 	var thisTime = new Date();
 	return (thisTime.getTime() - clockStart)/1000;
+}
+function clearKey(id) {
+	let key = document.getElementById(id);
+	let i = key.className.indexOf("pressed_");
+	if (i !== -1)
+		key.className = key.className.slice(8);
 }
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
@@ -80,8 +89,7 @@ function rusToUpper () {
 	keys[2].innerHTML = "/";
 	keys[2].id = keys.innerHTML;
 
-	keys = document.getElementById("LSHIFT");
-	highlightSpecial(keys.innerHTML, keys.className, keys.id);
+	highlight("LSHIFT");
 }
 function rusToLower () {
 
@@ -106,7 +114,7 @@ function rusToLower () {
 	keys = document.getElementsByClassName("flex_key");
 	keys[2].innerHTML = "\\";
 	keys[2].id = keys.innerHTML;
-	
+	clearKey("LSHIFT");
 }
 function engToUpper () {
 
@@ -184,8 +192,7 @@ function engToUpper () {
 		keys.id = keys.innerHTML;
 	}
 
-	keys = document.getElementById("LSHIFT");
-	highlightSpecial(keys.innerHTML, keys.className, keys.id);
+	highlight("LSHIFT");
 }
 function engToLower () {
 
@@ -264,7 +271,7 @@ function engToLower () {
 		keys.innerHTML = "\\";
 		keys.id = keys.innerHTML;
 	}
-	
+	clearKey("LSHIFT");
 }
 function changeRegistry () {
     if (registryState === upper) {
@@ -301,37 +308,8 @@ function moveCursor (e) {
 			refreshText();
 		}
 		else {
-            let found = false;
-            let keys = document.getElementsByClassName("key");
-
-            if (cursor.innerHTML === " ") {
-                highlightSpecial("Space", "space_key", "SPACE");
-                found = true;
-            }
-
-            if (found === false) {
-                for (let i = 0; i < keys.length; i++)
-                    if (cursor.innerHTML === keys[i].innerHTML) {
-                        highlight(cursor.innerHTML);
-                        found = true;
-                        break;
-                    }
-
-                console.log(state, registryState);
-
-                if (found === false)
-                changeRegistry();
-
-                console.log(state, registryState);
-                keys = document.getElementsByClassName("key");
-                for (let i = 0; i < keys.length; i++)
-                    if (cursor.innerHTML === keys[i].innerHTML) {
-                        highlight(cursor.innerHTML);
-                        found = true;
-                        break;
-                    }
-            }
-
+			tryToHighlight(cursor);
+            
 			/*if (cursor.innerHTML === cursor.innerHTML.toUpperCase() && cursor.innerHTML !== " ")
                 changeRegistry();
                     
@@ -342,21 +320,42 @@ function moveCursor (e) {
 		cursor.id = "typing_wrong";
 	}
 }
-function highlightSpecial (name, className, id) {
+function tryToHighlight (cursor) {
+	let found = false;
+            let keys = document.getElementsByClassName("key");
+
+            if (cursor.innerHTML === " ") {
+                highlightSpecial("space_key", "SPACE");
+                found = true;
+            }
+            if (found === false) {
+                for (let i = 0; i < keys.length; i++)
+                    if (cursor.innerHTML === keys[i].innerHTML) {
+                        highlight(cursor.innerHTML);
+                        found = true;
+                        break;
+                    }
+
+                if (found === false)
+                changeRegistry();
+
+                keys = document.getElementsByClassName("key");
+                for (let i = 0; i < keys.length; i++)
+                    if (cursor.innerHTML === keys[i].innerHTML) {
+                        highlight(cursor.innerHTML);
+                        found = true;
+                        break;
+                    }
+            }
+}
+function highlightSpecial (className, id) {
 	let key = document.getElementById(id);
 	key.className = "pressed_" + className;
-	key.innerHTML = name;
 }
 function highlight (symbol) {
 	let key = document.getElementById(symbol);
-        if (key !== null)
-            if (key.className === "key") {
-                key.className = "pressed_key";
-                key.innerHTML = symbol;
-            } else if (key.className === "flex_key") {
-                key.className = "pressed_flex_key";
-                key.innerHTML = symbol;
-            }
+	if (key !== null)
+		key.className = "pressed_" + key.className;
 }
 function refreshText () {
 	let cursor = document.getElementById("typing");
@@ -374,12 +373,13 @@ function refreshText () {
 }
 function readRandomText () {
     let str = "";
-    let mydata = JSON.parse(JSON.stringify(dataRus));
-    if (state === rus)
-	    mydata = JSON.parse(JSON.stringify(dataRus));
-    if (state === eng)
-        mydata = JSON.parse(JSON.stringify(dataEng));
+	let data;
+	if (state === rus)
+		data = dataRus;
+	else
+		data = dataEng;
 
+    let mydata = JSON.parse(JSON.stringify(data));
 	let i = getRandomInt(mydata.length - 1);
 	str = String(mydata[i].text);
 
@@ -389,24 +389,26 @@ function getRandomInt(max) {
 	return Math.floor(Math.random() * max);
 }
 
-let typedSymbols = 0;
+let typedSymbols = 0;	
 let errors = 0;
 
 export default document.onkeydown = function (e) {
-	if (e.key === "Shift" || e.key === "Alt" || e.key === "Ctrl" || e.key === "Win" || e.key === "Tab" || e.key === "CapsLock")
-	    return;
-	for (let i = 1; i <= 12; i++) {
-		if (e.key === "F" + String(i)) 
+	if (String(window.location.href) !== link) {
+		if (e.key === "Shift" || e.key === "Alt" || e.key === "Ctrl" || e.key === "Win" || e.key === "Tab" || e.key === "CapsLock")
 			return;
+		for (let i = 1; i <= 12; i++) {
+			if (e.key === "F" + String(i)) 
+				return;
+			}
+		let typed = document.getElementById("typed");
+		if (typed.innerHTML === "") {
+			refreshStopwatch();
+			typedSymbols = 0;
+			errors = 0;
 		}
-	let typed = document.getElementById("typed");
-	if (typed.innerHTML === "") {
-		refreshStopwatch();
-		typedSymbols = 0;
-		errors = 0;
-	}
-	moveCursor(e);
-	if (typedSymbols !== 1)
-		document.getElementById("speed").innerHTML = String(Math.round(typedSymbols / initStopwatch() * 60));
-	document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
+		moveCursor(e);
+		if (typedSymbols !== 1)
+			document.getElementById("speed").innerHTML = String(Math.round(typedSymbols / initStopwatch() * 60));
+		document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
+	} 	
 }
