@@ -24,14 +24,9 @@ function stateSet () {
 }
 
 function init () {
-    stateSet();
-
 	let cursor = document.getElementById("typing");
-	if (cursor.innerHTML === cursor.innerHTML.toUpperCase() && cursor.innerHTML !== " ")
-		engToUpper();
-	else
-		engToLower();
 	highlight(cursor.innerHTML);
+	changeRegistry();
 }
 
 let startdate = new Date();
