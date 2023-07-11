@@ -53,6 +53,12 @@ function switchHand(id) {
 				case 3:
 					cursor = 5;
 					break;
+				case 4:
+					if (shiftHand === right)
+						spawnHand(lhand5, key, 5, -50);
+					else
+						spawnHand(rhand1, key, 5, -5);
+					return;
 			}
 		}
 	}
@@ -152,7 +158,6 @@ function clearKey(id) {
 }
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
-	console.log(key);
 	if (key.length !== 0) {
 		let l = key.length;
 		for (let i = 0; i < l; i++)
@@ -160,19 +165,16 @@ function clear() {
 	}
 	
 	key = document.getElementsByClassName("pressed_space_key");
-	console.log(key);
 	if (key.length !== 0) {
 		key[0].className = "space_key";
 	}
 	key = document.getElementsByClassName("pressed_flex_key");
-	console.log(key);
 	if (key.length !== 0) {
 		let l = key.length;
 		for (let i = 0; i < l; i++)
 			key[i].className = "flex_key";
 	} 
 	key = document.getElementsByClassName("hand");
-	console.log(key);
 	if (key.length !== 0) {
 		let l = key.length;
 		for (let i = 0; i < l; i++)
