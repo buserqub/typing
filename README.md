@@ -3,4 +3,4 @@
 
 # Демонстрация работы
 
-![ezgif-5-9fdacb1f89](https://github.com/buserqub/typing/assets/73015330/44ccc629-4482-4c61-a05b-81bebc5e6c49)
+![ezgif-1-5dbf23ee9b](https://github.com/buserqub/typing/assets/73015330/b12c8fd7-fb8d-41d9-9579-05ba4014f988)
