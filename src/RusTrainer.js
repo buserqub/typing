@@ -7,11 +7,11 @@ export default function RusTrainer() {
 	return (
 		<div>
 			<div class = "text">
-				<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1></div>
+			<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1></div>
 			</div>
 			<script src = {Controller}></script>
 			<br></br>
-			<div class ="hands" id ="hands"></div>
+			<div class ="hands" id = "hands"></div>
 			<div class = "keyboard">
 				<div class = "keyboard_row" id ="row_1">
 					<div class = "key" id = "Ё">Ё</div>

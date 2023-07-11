@@ -18,82 +18,24 @@ const rus = "rus";
 const eng = "eng";
 const upper = "upper";
 const lower = "lower";
+const right = "right";
+const left = "left";
 
 let link = "http://localhost:3000/";
 let registryState = upper;
 let state = rus;
+let shiftHand = left;
 
-/*function switchHand(id) {
-	let rows = document.getElementsByClassName("keyboard_row");
-	for (let i = 0; i < rows.length; i++) {
-		if (rows[i] !== null) {
-			let cursor = 0;
-			let row = document.getElementsByClassName("pressed_flex_key");
-			if (row === null)
-				row = document.getElementsByClassName("pressed_key");
-			if (row !== null) {
-				console.log(rows, rows[i], row, row[0]);
-				switch (i) {
-					case 0:
-						cursor = 6;
-						break;
-					case 1:
-						cursor = 5;
-						break;
-					case 2:
-						cursor = 5;
-						break;
-					case 3:
-						cursor = 5;
-						break;
-				}
-				for (let j = 0; j < row.length; j++) {
-					console.log(row[j]);
-					if (rows[i].getElementsById(row[j].id) === row[j])
-						if (j <= cursor) {
-							switch (cursor - j) {
-								case 0:
-									spawnHand(lhand4);	
-									break;
-								case 1:
-									spawnHand(lhand4);	
-									break;
-								case 2:
-									spawnHand(lhand3);	
-									break;
-								case 3:
-									spawnHand(lhand2);	
-									break;
-								default:
-									spawnHand(lhand1);
-							}		
-						} else {
-							switch (j - cursor) {
-								case 1:
-									spawnHand(rhand1);	
-									break;
-								case 2:
-									spawnHand(rhand2);	
-									break;
-								case 3:
-									spawnHand(rhand3);	
-									break;
-								case 4:
-									spawnHand(rhand4);	
-									break;
-								default:
-									spawnHand(rhand4);
-							}	
-						}
-				}
-			}
-		}
-	}
-}*/
-
+function tryToShift () {
+	if (registryState === upper)
+		if (shiftHand === left)
+			highlight("LSHIFT");
+		else
+			highlight("RSHIFT");
+}
 function switchHand(id) {
 	let key = document.getElementById(id);
-	let row = key.closest("div.keyboard_row");
+	let row = key.parentNode;
 	let rows = document.getElementsByClassName("keyboard_row");
 	let cursor = 0;
 	for (let i = 0; i < rows.length; i++) {
@@ -118,6 +60,7 @@ function switchHand(id) {
 		rows = row.getElementsByTagName("div");
 		if (rows[i] === key)
 			if (i <= cursor) {
+				shiftHand = right;
 				switch (cursor - i) {
 					case 0:
 						spawnHand(lhand4, key);
@@ -136,6 +79,7 @@ function switchHand(id) {
 						break;
 				}		
 			} else {
+				shiftHand = left;
 				switch (i - cursor) {
 					case 1:
 						spawnHand(rhand2, key);	
@@ -159,24 +103,19 @@ function switchHand(id) {
 function spawnHand(hand, key) {
 	let elem = document.createElement('div');
 	elem.className = "hand";
-	elem.style.top = 0 + "px";
-	elem.style.left = 0 + "px";
 	let img = document.createElement('img');
 	img.src = hand;
 	elem.append(img);
 	let block = document.getElementById("hands");
 	block.append(elem);
 	let rect = key.getBoundingClientRect();
-	console.log(elem.top);
-	elem.style.top = rect.top + 'px';
+	elem.style.top = rect.top + 32 + 'px';
 	elem.style.left = rect.left + 'px';
-	console.log(elem.style.top);
 }
 
 window.onload = function () {
 	if (String(window.location.href) !== link) {
 		stateSet();
-		highlight("LSHIFT");
 		refreshText();
 	}
 }
@@ -213,18 +152,31 @@ function clearKey(id) {
 }
 function clear() {
 	let key = document.getElementsByClassName("pressed_key");
-	if (key[0] != null) {
-		for (let i = 0; i < key.length; i++)
+	console.log(key);
+	if (key.length !== 0) {
+		let l = key.length;
+		for (let i = 0; i < l; i++)
 			key[i].className = "key";
 	}
+	
 	key = document.getElementsByClassName("pressed_space_key");
-	if (key[0] != null) {
+	console.log(key);
+	if (key.length !== 0) {
 		key[0].className = "space_key";
 	}
 	key = document.getElementsByClassName("pressed_flex_key");
-	if (key[0] != null) {
-		for (let i = 0; i < key.length; i++)
+	console.log(key);
+	if (key.length !== 0) {
+		let l = key.length;
+		for (let i = 0; i < l; i++)
 			key[i].className = "flex_key";
+	} 
+	key = document.getElementsByClassName("hand");
+	console.log(key);
+	if (key.length !== 0) {
+		let l = key.length;
+		for (let i = 0; i < l; i++)
+			key[0].parentNode.removeChild(key[0]);
 	}
 }
 function rusToUpper () {
@@ -250,8 +202,6 @@ function rusToUpper () {
 	keys = document.getElementsByClassName("flex_key");
 	keys[2].innerHTML = "/";
 	keys[2].id = keys.innerHTML;
-
-	highlight("LSHIFT");
 }
 function rusToLower () {
 
@@ -276,7 +226,6 @@ function rusToLower () {
 	keys = document.getElementsByClassName("flex_key");
 	keys[2].innerHTML = "\\";
 	keys[2].id = keys.innerHTML;
-	clearKey("LSHIFT");
 }
 function engToUpper () {
 
@@ -353,8 +302,6 @@ function engToUpper () {
 		keys.innerHTML = "|";
 		keys.id = keys.innerHTML;
 	}
-
-	highlight("LSHIFT");
 }
 function engToLower () {
 
@@ -433,7 +380,6 @@ function engToLower () {
 		keys.innerHTML = "\\";
 		keys.id = keys.innerHTML;
 	}
-	clearKey("LSHIFT");
 }
 function changeRegistry () {
     if (registryState === upper) {
@@ -487,7 +433,7 @@ function tryToHighlight (cursor) {
             let keys = document.getElementsByClassName("key");
 
             if (cursor.innerHTML === " ") {
-                highlightSpecial("space_key", "SPACE");
+                highlight("SPACE");
                 found = true;
             }
             if (found === false) {
@@ -508,6 +454,7 @@ function tryToHighlight (cursor) {
                         found = true;
                         break;
                     }
+				tryToShift();
             }
 }
 function highlightSpecial (className, id) {

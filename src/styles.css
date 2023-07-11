@@ -24,6 +24,10 @@
     margin-bottom: 60px;
     text-align: center;
   }
+  .main_text {
+    height: 100%;
+    margin: 0px;
+  }
   .main_text span{
     font-size: 32px;
   }
