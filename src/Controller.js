@@ -1,3 +1,15 @@
+import rhand1 from './images/rhand1.png'
+import rhand2 from './images/rhand2.png'
+import rhand3 from './images/rhand3.png'
+import rhand4 from './images/rhand4.png'
+import rhand5 from './images/rhand5.png'
+
+import lhand1 from './images/lhand1.png'
+import lhand2 from './images/lhand2.png'
+import lhand3 from './images/lhand3.png'
+import lhand4 from './images/lhand4.png'
+import lhand5 from './images/lhand5.png'
+
 import dataEng from './dataEng.json'
 import dataRus from './dataRus.json'
 import './styles.css'
@@ -10,6 +22,156 @@ const lower = "lower";
 let link = "http://localhost:3000/";
 let registryState = upper;
 let state = rus;
+
+/*function switchHand(id) {
+	let rows = document.getElementsByClassName("keyboard_row");
+	for (let i = 0; i < rows.length; i++) {
+		if (rows[i] !== null) {
+			let cursor = 0;
+			let row = document.getElementsByClassName("pressed_flex_key");
+			if (row === null)
+				row = document.getElementsByClassName("pressed_key");
+			if (row !== null) {
+				console.log(rows, rows[i], row, row[0]);
+				switch (i) {
+					case 0:
+						cursor = 6;
+						break;
+					case 1:
+						cursor = 5;
+						break;
+					case 2:
+						cursor = 5;
+						break;
+					case 3:
+						cursor = 5;
+						break;
+				}
+				for (let j = 0; j < row.length; j++) {
+					console.log(row[j]);
+					if (rows[i].getElementsById(row[j].id) === row[j])
+						if (j <= cursor) {
+							switch (cursor - j) {
+								case 0:
+									spawnHand(lhand4);	
+									break;
+								case 1:
+									spawnHand(lhand4);	
+									break;
+								case 2:
+									spawnHand(lhand3);	
+									break;
+								case 3:
+									spawnHand(lhand2);	
+									break;
+								default:
+									spawnHand(lhand1);
+							}		
+						} else {
+							switch (j - cursor) {
+								case 1:
+									spawnHand(rhand1);	
+									break;
+								case 2:
+									spawnHand(rhand2);	
+									break;
+								case 3:
+									spawnHand(rhand3);	
+									break;
+								case 4:
+									spawnHand(rhand4);	
+									break;
+								default:
+									spawnHand(rhand4);
+							}	
+						}
+				}
+			}
+		}
+	}
+}*/
+
+function switchHand(id) {
+	let key = document.getElementById(id);
+	let row = key.closest("div.keyboard_row");
+	let rows = document.getElementsByClassName("keyboard_row");
+	let cursor = 0;
+	for (let i = 0; i < rows.length; i++) {
+		if (rows[i] === row) {
+			switch (i) {
+				case 0:
+					cursor = 6;
+					break;
+				case 1:
+					cursor = 5;
+					break;
+				case 2:
+					cursor = 5;
+					break;
+				case 3:
+					cursor = 5;
+					break;
+			}
+		}
+	}
+	for (let i = 0; i < rows.length; i++) {
+		rows = row.getElementsByTagName("div");
+		if (rows[i] === key)
+			if (i <= cursor) {
+				switch (cursor - i) {
+					case 0:
+						spawnHand(lhand4, key);
+						break;
+					case 1:
+						spawnHand(lhand4, key);	
+						break;
+					case 2:
+						spawnHand(lhand3, key);	
+						break;
+					case 3:
+						spawnHand(lhand2, key);	
+						break;
+					default:
+						spawnHand(lhand1, key);
+						break;
+				}		
+			} else {
+				switch (i - cursor) {
+					case 1:
+						spawnHand(rhand2, key);	
+						break;
+					case 2:
+						spawnHand(rhand2, key);	
+						break;
+					case 3:
+						spawnHand(rhand3, key);	
+						break;
+					case 4:
+						spawnHand(rhand4, key);	
+						break;
+					default:
+						spawnHand(rhand5, key);
+						break;
+				}	
+			}
+	}
+}
+function spawnHand(hand, key) {
+	let elem = document.createElement('div');
+	elem.className = "hand";
+	elem.style.top = 0 + "px";
+	elem.style.left = 0 + "px";
+	let img = document.createElement('img');
+	img.src = hand;
+	elem.append(img);
+	let block = document.getElementById("hands");
+	block.append(elem);
+	let rect = key.getBoundingClientRect();
+	console.log(elem.top);
+	elem.style.top = rect.top + 'px';
+	elem.style.left = rect.left + 'px';
+	console.log(elem.style.top);
+}
 
 window.onload = function () {
 	if (String(window.location.href) !== link) {
@@ -352,10 +514,12 @@ function highlightSpecial (className, id) {
 	let key = document.getElementById(id);
 	key.className = "pressed_" + className;
 }
-function highlight (symbol) {
-	let key = document.getElementById(symbol);
+function highlight (id) {
+	let key = document.getElementById(id);
 	if (key !== null)
 		key.className = "pressed_" + key.className;
+	
+	switchHand(id);
 }
 function refreshText () {
 	let cursor = document.getElementById("typing");

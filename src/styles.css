@@ -57,6 +57,19 @@
     display: flex;
     width: 600px;
   }
+  .hands {
+    margin: 0 auto;
+    width: 800px;
+  }
+  .hand {
+    position: absolute;
+    height: 87px;
+    width: 58px;
+  }
+  .hand img {
+    height: 87px;
+    width: 58px;
+  }
   .keyboard {
     background: black;
     border-radius: 6px;

@@ -1,4 +1,4 @@
-import question from './question.jpeg'
+import question from './images/question.jpeg'
 import './styles.css'
 import React from 'react'
 import Controller from './Controller';
@@ -11,7 +11,8 @@ export default function RusTrainer() {
 			</div>
 			<script src = {Controller}></script>
 			<br></br>
-			<div class = "keyboard" id ="keyboard">
+			<div class ="hands" id ="hands"></div>
+			<div class = "keyboard">
 				<div class = "keyboard_row" id ="row_1">
 					<div class = "key" id = "Ё">Ё</div>
 					<div class = "key" id = "1">1</div>
