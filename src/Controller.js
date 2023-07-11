@@ -63,44 +63,44 @@ function switchHand(id) {
 				shiftHand = right;
 				switch (cursor - i) {
 					case 0:
-						spawnHand(lhand4, key);
+						spawnHand(lhand4, key, 32, -40);
 						break;
 					case 1:
-						spawnHand(lhand4, key);	
+						spawnHand(lhand4, key, 32, -40);	
 						break;
 					case 2:
-						spawnHand(lhand3, key);	
+						spawnHand(lhand3, key, 36, -29);	
 						break;
 					case 3:
-						spawnHand(lhand2, key);	
+						spawnHand(lhand2, key, 32, -17);	
 						break;
 					default:
-						spawnHand(lhand1, key);
+						spawnHand(lhand1, key, 20, -6);
 						break;
 				}		
 			} else {
 				shiftHand = left;
 				switch (i - cursor) {
 					case 1:
-						spawnHand(rhand2, key);	
+						spawnHand(rhand2, key, 32, -17);	
 						break;
 					case 2:
-						spawnHand(rhand2, key);	
+						spawnHand(rhand2, key, 32, -17);	
 						break;
 					case 3:
-						spawnHand(rhand3, key);	
+						spawnHand(rhand3, key, 36, -29);	
 						break;
 					case 4:
-						spawnHand(rhand4, key);	
+						spawnHand(rhand4, key, 32, -40);	
 						break;
 					default:
-						spawnHand(rhand5, key);
+						spawnHand(rhand5, key, 20, -52);
 						break;
 				}	
 			}
 	}
 }
-function spawnHand(hand, key) {
+function spawnHand(hand, key, top, left) {
 	let elem = document.createElement('div');
 	elem.className = "hand";
 	let img = document.createElement('img');
@@ -109,8 +109,8 @@ function spawnHand(hand, key) {
 	let block = document.getElementById("hands");
 	block.append(elem);
 	let rect = key.getBoundingClientRect();
-	elem.style.top = rect.top + 32 + 'px';
-	elem.style.left = rect.left + 'px';
+	elem.style.top = rect.top + top + 'px';
+	elem.style.left = rect.left + (rect.right - rect.left) / 2 + left + 'px';
 }
 
 window.onload = function () {
@@ -505,7 +505,7 @@ let errors = 0;
 
 export default document.onkeydown = function (e) {
 	if (String(window.location.href) !== link) {
-		if (e.key === "Shift" || e.key === "Alt" || e.key === "Ctrl" || e.key === "Win" || e.key === "Tab" || e.key === "CapsLock")
+		if (e.key === "Shift" || e.key === "Alt" || e.key === "Control" || e.key === "Win" || e.key === "Tab" || e.key === "CapsLock")
 			return;
 		for (let i = 1; i <= 12; i++) {
 			if (e.key === "F" + String(i)) 
@@ -518,8 +518,9 @@ export default document.onkeydown = function (e) {
 			errors = 0;
 		}
 		moveCursor(e);
-		if (typedSymbols !== 1)
+		if (typedSymbols > 1) {
 			document.getElementById("speed").innerHTML = String(Math.round(typedSymbols / initStopwatch() * 60));
-		document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
+			document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
+		}
 	} 	
 }
