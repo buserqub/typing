@@ -1,15 +1,3 @@
-import rhand1 from './images/rhand1.png'
-import rhand2 from './images/rhand2.png'
-import rhand3 from './images/rhand3.png'
-import rhand4 from './images/rhand4.png'
-import rhand5 from './images/rhand5.png'
-
-import lhand1 from './images/lhand1.png'
-import lhand2 from './images/lhand2.png'
-import lhand3 from './images/lhand3.png'
-import lhand4 from './images/lhand4.png'
-import lhand5 from './images/lhand5.png'
-
 import question from './images/question.jpeg'
 import './styles.css'
 import React from 'react'

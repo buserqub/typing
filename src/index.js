@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import mongoose from "mongoose";
+
+mongoose.connect("mongodb://localhost:27017/textbox");
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
