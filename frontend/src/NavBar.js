@@ -8,7 +8,7 @@ function NavBar () {
                 <a href = '/'>Home</a>
             </li>
             <li>
-                <a href = '/rus'>Rus</a>
+                <a href = '/ru'>Rus</a>
             </li>
             <li>
                 <a href = '/eng'>Eng</a>

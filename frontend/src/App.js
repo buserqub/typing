@@ -1,8 +1,9 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Home from './Home';
-import RusTrainer from './RusTrainer';
+import RuTrainer from './RuTrainer';
 import EngTrainer from './EngTrainer';
+import RuTextAdd from './RuTextAdd';
 import NavBar from './NavBar';
 
 function App() {
@@ -12,8 +13,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/rus' element={<RusTrainer />} />
+        <Route path='/ru' element={<RuTrainer />} />
         <Route path='/eng' element={<EngTrainer />} />
+        <Route path='/ru/text_add' element={<RuTextAdd />} />
       </Routes>
     </BrowserRouter>
     </>

@@ -1,6 +1,6 @@
-import question from './images/question.jpeg'
-import './styles.css'
-import React from 'react'
+import question from './images/question.jpeg';
+import './styles.css';
+import React from 'react';
 import Controller from './Controller';
 
 export default function EngTrainer() {
@@ -11,7 +11,7 @@ export default function EngTrainer() {
 			</div>			
 			<script src = {Controller}></script>
 			<br></br>
-			<div class ="hands" id ="hands"></div>
+			<div class ="hands" id = "hands"></div>
 			<div class = "keyboard" id ="keyboard">
 				<div class = "keyboard_row" id ="row_1">
 					<div class = "key" id = "~">~</div>
@@ -94,6 +94,7 @@ export default function EngTrainer() {
 				</div>
 			</div>
 			<br></br>
+			<button>Добавьте свой текст!</button>
 		</div>
 	);
 }

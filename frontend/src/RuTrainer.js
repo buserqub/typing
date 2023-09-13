@@ -1,18 +1,25 @@
-import question from './images/question.jpeg'
-import './styles.css'
-import React from 'react'
+import question from './images/question.jpeg';
+import './styles.css';
+import React from 'react';
 import Controller from './Controller';
+import RuTextAdd from './RuTextAdd';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-export default function RusTrainer() {
+export default function RuTrainer() {
 	return (
 		<div>
+			<>
+				<Routes>
+					<Route path='ru/text_add' element={<RuTextAdd />} />
+				</Routes>
+			</>
 			<div class = "text">
-			<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1></div>
+				<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1></div>
 			</div>
 			<script src = {Controller}></script>
 			<br></br>
 			<div class ="hands" id = "hands"></div>
-			<div class = "keyboard">
+			<div class = "keyboard" id ="keyboard">
 				<div class = "keyboard_row" id ="row_1">
 					<div class = "key" id = "Ё">Ё</div>
 					<div class = "key" id = "1">1</div>
@@ -93,6 +100,9 @@ export default function RusTrainer() {
 				</div>
 			</div>
 			<br></br>
+			<a href = "/ru/text_add">
+				<button>Добавьте свой текст!</button>
+			</a>
 		</div>
 	)
 }

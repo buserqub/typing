@@ -12,7 +12,7 @@ import lhand5 from './images/lhand5.png'
 
 import './styles.css'
 
-const rus = "rus";
+const ru = "ru";
 const eng = "eng";
 const upper = "upper";
 const lower = "lower";
@@ -21,9 +21,155 @@ const left = "left";
 
 let link = "http://localhost:3000/";
 let registryState = upper;
-let state = rus;
+let state = ru;
+let alphabit = [
+	'а',
+	'б',
+	'в',
+	'г',
+	'д',
+	'е',
+	'ё',
+	'ж',
+	'з',
+	'и',
+	'й',
+	'к',
+	'л',
+	'м',
+	'н',
+	'о',
+	'п',
+	'р',
+	'с',
+	'т',
+	'у',
+	'ф',
+	'х',
+	'ц',
+	'ч',
+	'ш',
+	'щ',
+	'ъ',
+	'ы',
+	'ь',
+	'э',
+	'ю',
+	'я',
+	',',
+	'.',
+	'!',
+	'?',
+	'\'',
+	'\"'
+];
 let shiftHand = left;
 
+function switchAlphabit () {
+	if (state === ru)
+	alphabit = [
+		'а',
+		'б',
+		'в',
+		'г',
+		'д',
+		'е',
+		'ё',
+		'ж',
+		'з',
+		'и',
+		'й',
+		'к',
+		'л',
+		'м',
+		'н',
+		'о',
+		'п',
+		'р',
+		'с',
+		'т',
+		'у',
+		'ф',
+		'х',
+		'ц',
+		'ч',
+		'ш',
+		'щ',
+		'ъ',
+		'ы',
+		'ь',
+		'э',
+		'ю',
+		'я',
+		',',
+		'.',
+		'!',
+		'?',
+		'\'',
+		'\"'
+	];
+	else
+		alphabit = [
+			'a',
+			'b',
+			'c',
+			'e',
+			'f',
+			'g',
+			'h',
+			'i',
+			'j',
+			'k',
+			'l',
+			'm',
+			'n',
+			'o',
+			'p',
+			'q',
+			'r',
+			's',
+			't',
+			'u',
+			'v',
+			'w',
+			'x',
+			'y',
+			'z',
+			',',
+			'.',
+			'!',
+			'?',
+			'\'',
+			'\"'
+		];
+}
+export async function buttonClick (str) {
+	let frequency = [];
+
+	for (let i = 0; i < alphabit.length; i++) 
+	{
+		let q = 0;
+		for (let j = 0; j < str.length; j++) 
+		{
+			if (str[j].toLowerCase() === alphabit[i])
+				q++;
+		}
+			
+		frequency[frequency.length] = q;
+	}
+
+	let data = {
+		text: str,
+		symbols: alphabit,
+		frequency: frequency
+	}
+
+	let response = await fetch('http://localhost:3010/api/' + state, {
+		method: 'POST',
+		body: data.json
+	})
+
+}
 function tryToShift () {
 	if (registryState === upper)
 		if (shiftHand === left)
@@ -118,18 +264,19 @@ function spawnHand(hand, key, top, left) {
 }
 
 window.onload = function () {
-	if (String(window.location.href) !== link) {
+	if (String(window.location.href) === link + ru || String(window.location.href) === link + eng) {
 		stateSet();
 		refreshText();
 	}
 }
 
 function stateSet () {
-    if (String(window.location.href) === link + rus)
-        state = rus;
+    if (String(window.location.href) === link + ru)
+		state = ru;
 	else
 		if (String(window.location.href) === link + eng)
 			state = eng;
+	switchAlphabit();
 }
 
 function init () {
@@ -161,7 +308,6 @@ function clear() {
 		for (let i = 0; i < l; i++)
 			key[i].className = "key";
 	}
-	
 	key = document.getElementsByClassName("pressed_space_key");
 	if (key.length !== 0) {
 		key[0].className = "space_key";
@@ -384,14 +530,14 @@ function engToLower () {
 function changeRegistry () {
     if (registryState === upper) {
         registryState = lower;
-        if (state === rus)
+        if (state === ru)
             rusToLower();
         else if (state === eng)
             engToLower();
     }
     else if (registryState === lower) {
         registryState = upper;
-        if (state === rus)
+        if (state === ru)
             rusToUpper();
         else if (state === eng)
             engToUpper()
@@ -508,7 +654,7 @@ let typedSymbols = 0;
 let errors = 0;
 
 export default document.onkeydown = function (e) {
-	if (String(window.location.href) !== link) {
+	if (String(window.location.href) === link + ru || String(window.location.href) === link + eng) {
 		if (e.key === "Shift" || e.key === "Alt" || e.key === "Control" || e.key === "Win" || e.key === "Tab" || e.key === "CapsLock")
 			return;
 		for (let i = 1; i <= 12; i++) {
@@ -526,5 +672,5 @@ export default document.onkeydown = function (e) {
 			document.getElementById("speed").innerHTML = String(Math.round(typedSymbols / initStopwatch() * 60));
 			document.getElementById("accuracy").innerHTML = String(Math.round((typedSymbols - errors) / typedSymbols * 100));
 		}
-	} 	
+	}	
 }

@@ -153,3 +153,7 @@
     text-align: center;
     width: 394px;
   }
+  .text_input {
+    height: 25px;
+    width: 800px;
+  }
