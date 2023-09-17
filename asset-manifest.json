@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/typing/static/css/main.19dafcbf.css",
-    "main.js": "/typing/static/js/main.324335e7.js",
+    "main.js": "/typing/static/js/main.b1c1b0dd.js",
     "static/js/787.bc7d429a.chunk.js": "/typing/static/js/787.bc7d429a.chunk.js",
     "static/media/question.jpeg": "/typing/static/media/question.20e1c4afa6f2a43b36be.jpeg",
     "index.html": "/typing/index.html",
     "main.19dafcbf.css.map": "/typing/static/css/main.19dafcbf.css.map",
-    "main.324335e7.js.map": "/typing/static/js/main.324335e7.js.map",
+    "main.b1c1b0dd.js.map": "/typing/static/js/main.b1c1b0dd.js.map",
     "787.bc7d429a.chunk.js.map": "/typing/static/js/787.bc7d429a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.19dafcbf.css",
-    "static/js/main.324335e7.js"
+    "static/js/main.b1c1b0dd.js"
   ]
 }
