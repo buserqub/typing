@@ -4,6 +4,7 @@ import Home from './Home';
 import RusTrainer from './RusTrainer';
 import EngTrainer from './EngTrainer';
 import NavBar from './NavBar';
+currentPath = 'typing';
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
     <NavBar />
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/rus' element={<RusTrainer />} />
-        <Route path='/eng' element={<EngTrainer />} />
+        <Route path = {currentPath + '/'} element={<Home />} />
+        <Route path = {currentPath + '/rus'} element={<RusTrainer />} />
+        <Route path = {currentPath + '/eng'} element={<EngTrainer />} />
       </Routes>
     </BrowserRouter>
     </>
