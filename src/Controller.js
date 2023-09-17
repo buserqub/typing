@@ -468,7 +468,7 @@ function highlight (id) {
 	if (key !== null)
 		key.className = "pressed_" + key.className;
 	
-	switchHand(id);
+	//switchHand(id);
 }
 function refreshText () {
 	let cursor = document.getElementById("typing");

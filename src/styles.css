@@ -59,20 +59,20 @@
   .stats {
     margin: 0 auto;
     display: flex;
-    width: 600px;
+    max-width: 600px;
   }
   .hands {
     margin: 0 auto;
-    width: 800px;
+    max-width: 800px;
   }
   .hand {
     position: absolute;
-    height: 87px;
-    width: 58px;
+    max-height: 87px;
+    max-width: 58px;
   }
   .hand img {
-    height: 87px;
-    width: 58px;
+    max-height: 87px;
+    max-width: 58px;
   }
   .keyboard {
     background: black;
@@ -80,7 +80,7 @@
     box-shadow: 1px 1px 8px 0 rgb(0 0 0 / 20%);
     margin: 0 auto;
     padding: 3px;
-    width: 800px;
+    max-width: 800px;
   }
   .keyboard_row {
     display: flex;
@@ -151,5 +151,5 @@
     height: 50px;
     margin: 1.5px;
     text-align: center;
-    width: 394px;
+    max-width: 394px;
   }
