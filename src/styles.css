@@ -9,11 +9,13 @@
     color:#000;
   }
   ul {
-      list-style: None;
-      text-align: center;
-      text-transform: uppercase;
-      font-size: 18px;
-      padding-inline-start: 0px;
+    margin: 0px;
+    margin-top: 18px;
+    list-style: None;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding-inline-start: 0px;
   }
   ul li {
       padding: 25px 20px;
@@ -42,6 +44,10 @@
   }
   #typed {
     color: rgb(50, 200, 20);
+  }
+  h1 {
+    margin: 0px;
+    margin-top: 18px;
   }
   h2 {
     font-size: 24px;
@@ -151,5 +157,71 @@
     height: 50px;
     margin: 1.5px;
     text-align: center;
-    max-width: 394px;
+    width: 394px;
+  }
+  .slider {
+    margin-top:18px;
+    width: 1100px;
+    height: 600px;
+    overflow: hidden;
+    border: 8px solid #000;
+    border-radius: 12px;
+  }
+  .middle {
+    position:absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .navigation {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  .bar {
+    height: 12px;
+    width: 45px;
+    margin: 9px;
+    cursor: pointer;
+    background-color: #777;
+    opacity: .5;
+    border-radius: 10px;
+    transition:all .4s ease;
+  }
+  .bar:hover {
+    opacity: .8;
+    transform: scale(1.1);
+  }
+  input[name="r"] {
+    position: absolute;
+    visibility: hidden;
+  }
+  .slides {
+    width: 300%;
+    height: 100%;
+    display: flex;
+  }
+  .slide {
+    width: 33.333%;
+    transition: all .6s ease;
+  }
+  .slide img {
+    width: 100%;
+    height: 100%;
+  }
+  .slide h3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 24px;
+  }
+  #r1:checked ~ .s1 {
+    margin-left: -0%;
+  }
+  #r2:checked ~ .s1 {
+    margin-left: -33.333%;
+  }
+  #r3:checked ~ .s1 {
+    margin-left: -66.667%;
   }
