@@ -9,13 +9,11 @@ function App() {
   return (
     <>
     <NavBar />
-    <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/rus' element={<RusTrainer />} />
         <Route path='/eng' element={<EngTrainer />} />
       </Routes>
-    </BrowserRouter>
     </>
   );
 }

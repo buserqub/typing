@@ -161,11 +161,11 @@
   }
   .slider {
     margin-top:18px;
-    width: 1100px;
-    height: 600px;
+    max-width: 1100px;
+    max-height: 600px;
     overflow: hidden;
     border: 8px solid #000;
-    border-radius: 12px;
+    border-radius: 16px;
   }
   .middle {
     position:absolute;
@@ -174,7 +174,7 @@
   }
   .navigation {
     position: absolute;
-    bottom: 16px;
+    bottom: 4%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -182,7 +182,8 @@
   .bar {
     height: 12px;
     width: 45px;
-    margin: 9px;
+    margin-left: 9px;
+    margin-right: 9px;
     cursor: pointer;
     background-color: #777;
     opacity: .5;
