@@ -198,10 +198,37 @@
     visibility: hidden;
   }
   .slides {
+    animation: sliderAnimate 15s infinite ease 0.04s;
     width: 300%;
     height: 100%;
     display: flex;
   }
+  .btn {
+    color: rgba(140, 200, 255, 0.85);
+    background-color: transparent;
+    border: 1px solid rgba(140, 200, 255, 0.85);
+    line-height: 1;
+  }
+  .btn p {
+    margin: 0;
+  }
+  .prev {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    font-size: 48px;
+  }
+  .next {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    font-size: 48px;
+  }
+  .btn:hover {
+    cursor: pointer;
+    background-color: rgba (0, 0, 0, 0.55);
+  }
+
   .slide {
     width: 33.333%;
     transition: all .6s ease;
@@ -216,6 +243,16 @@
     height: 100%;
     font-size: 24px;
   }
+  @keyframes sliderAnimate {
+    0% {margin-left: -0%;}  
+    16.667% {margin-left: -0%;}
+    33.333% {margin-left: -100%;}
+    50% {margin-left: -100%;}
+    66.667% {margin-left: -200%;}
+    83.333% {margin-left: -200%;}
+    100% {margin-left: -0%;}
+  }
+
   #r1:checked ~ .s1 {
     margin-left: -0%;
   }

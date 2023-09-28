@@ -41,6 +41,8 @@ function Home () {
                         <label htmlFor = "r2" className = "bar"></label>
                         <label htmlFor = "r3" className = "bar"></label>
                     </div>
+                    <button class="btn prev"><p>{"<"}</p></button>
+                    <button class="btn next"><p>{">"}</p></button>
                 </div>
             </div>
         </div>
