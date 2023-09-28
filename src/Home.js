@@ -12,12 +12,11 @@ function Home () {
             
             <div>
                 <div className = "slider middle">
-                    <div className = "slides">
-                        <input type="radio" name = "r" id="r1" defaultChecked></input>
-                        <input type="radio" name = "r" id="r2"></input>
-                        <input type="radio" name = "r" id="r3"></input>
-
-                        <div className = "slide s1">
+                    <input type="radio" name = "r" id="r1" defaultChecked></input>
+                    <input type="radio" name = "r" id="r2"></input>
+                    <input type="radio" name = "r" id="r3"></input>
+                    <div className = "slides s1">
+                        <div className = "slide">
                             <div>
                                 <h3>Выберите язык</h3>
                                 <img src = {slide1} alt = ""></img>
@@ -41,8 +40,8 @@ function Home () {
                         <label htmlFor = "r2" className = "bar"></label>
                         <label htmlFor = "r3" className = "bar"></label>
                     </div>
-                    <button class="btn prev"><p>{"<"}</p></button>
-                    <button class="btn next"><p>{">"}</p></button>
+                    <button className="btn prev"><p>{"<"}</p></button>
+                    <button className="btn next"><p>{">"}</p></button>
                 </div>
             </div>
         </div>

@@ -198,7 +198,7 @@
     visibility: hidden;
   }
   .slides {
-    animation: sliderAnimate 15s infinite ease 0.04s;
+    transition: all .6s ease;
     width: 300%;
     height: 100%;
     display: flex;
@@ -257,8 +257,8 @@
     margin-left: -0%;
   }
   #r2:checked ~ .s1 {
-    margin-left: -33.333%;
+    margin-left: -100%;
   }
   #r3:checked ~ .s1 {
-    margin-left: -66.667%;
+    margin-left: -200%;
   }
