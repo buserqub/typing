@@ -197,7 +197,7 @@
     position: absolute;
     visibility: hidden;
   }
-  .slides {
+  .slides { 
     transition: all .6s ease;
     width: 300%;
     height: 100%;
