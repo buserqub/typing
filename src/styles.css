@@ -183,10 +183,10 @@
     height: 12px;
     width: 45px;
     margin: 9px;
+    border-radius: 10px;
     cursor: pointer;
     background-color: #777;
     opacity: .5;
-    border-radius: 10px;
     transition:all .4s ease;
   }
   .bar:hover {
@@ -198,6 +198,8 @@
     visibility: hidden;
   }
   .slides {
+    
+    animation: sliderAnimate 15s infinite ease 0.04s;
     transition: all .6s ease;
     width: 300%;
     height: 100%;
@@ -224,9 +226,8 @@
     top: 50%;
     font-size: 48px;
   }
-  .btn:hover {
-    cursor: pointer;
-    background-color: rgba (0, 0, 0, 0.55);
+
+  .slider:hover .slides{
   }
 
   .slide {
@@ -252,16 +253,150 @@
     83.333% {margin-left: -200%;}
     100% {margin-left: -0%;}
   }
-  .s1 {
-    animation: sliderAnimate 15s infinite ease 0.04s;
+  @keyframes sliderAnimate2 {
+    0% {margin-left: -100%;}  
+    16.667% {margin-left: -100%;}
+    33.333% {margin-left: -200%;}
+    50% {margin-left: -200%;}
+    66.667% {margin-left: -0%;}
+    83.333% {margin-left: -0%;}
+    100% {margin-left: -100%;}
+  }
+  @keyframes sliderAnimate3 {
+    0% {margin-left: -200%;}  
+    16.667% {margin-left: -200%;}
+    33.333% {margin-left: -0%;}
+    50% {margin-left: -0%;}
+    66.667% {margin-left: -100%;}
+    83.333% {margin-left: -100%;}
+    100% {margin-left: -200%;}
   }
 
-  #r4:checked ~ .slides {
+  @keyframes barAnimate {
+    0% {
+      opacity: .8;
+      transform: scale(1.1);
+    }  
+    16.667% {
+      opacity: .8;
+      transform: scale(1.1);
+    }
+    33.333% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    66.667% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    83.333% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: .8;
+      transform: scale(1.1);
+    }
+  }
+  @keyframes barAnimate2 {
+    0% {
+      opacity: .5;
+      transform: scale(0.9);
+    }  
+    16.667% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    33.333% {
+      opacity: .8;
+      transform: scale(1.1);
+    }
+    50% {
+      opacity: .8;
+      transform: scale(1.1);
+    }
+    66.667% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    83.333% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+  }
+  @keyframes barAnimate3 {
+    0% {
+      opacity: .5;
+      transform: scale(0.9);
+    }  
+    16.667% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    33.333% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+    66.667% {
+      opacity: .8;
+      transform: scale(1.1);
+    }
+    83.333% {
+      opacity: .8;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: .5;
+      transform: scale(0.9);
+    }
+  }
+
+  #r1:checked ~ .slides {
     margin-left: -0%;
+    animation: sliderAnimate 15s infinite ease 0.04s;
+    animation-delay: 5s;
   }
-  #r5:checked ~ .slides {
+  #r1:checked ~ .navigation #lb1 {
+    opacity: .8;
+      transform: scale(1.1);
+    animation: barAnimate 15s infinite;
+    animation-delay: 5s;
+  }
+  #r1:checked ~ .navigation #lb2 {
+    animation: barAnimate2 15s infinite;
+    animation-delay: 5s;
+  }
+  #r1:checked ~ .navigation #lb3 {
+    animation: barAnimate3 15s infinite;
+    animation-delay: 5s;
+  }
+  #r2:checked ~ .slides {
     margin-left: -100%;
+    animation: sliderAnimate2 15s infinite ease 0.04s;
+    animation-delay: 5s;
   }
-  #r6:checked ~ .slides {
+  #r2:checked ~ .navigation #lb2 {
+    opacity: .8;
+    transform: scale(1.1);
+  }
+  #r3:checked ~ .slides {
     margin-left: -200%;
+    animation: sliderAnimate3 15s infinite ease 0.04s;
+    animation-delay: 5s;
+  }
+  #r3:checked ~ .navigation #lb3 {
+    opacity: .8;
+    transform: scale(1.1);
   }

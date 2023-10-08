@@ -12,9 +12,10 @@ function Home () {
             
             <div>
                 <div className = "slider middle">
-                    <input type="radio" name = "r" id="r1" defaultChecked></input>
+                    <input type="radio" name = "r" id="r1"></input>
                     <input type="radio" name = "r" id="r2"></input>
                     <input type="radio" name = "r" id="r3"></input>
+                    <input type="radio" name = "r" id="r4" defaultChecked></input>
                     <div className = "slides s1">
                         <div className = "slide">
                             <div>
@@ -36,39 +37,9 @@ function Home () {
                         </div>
                     </div>
                     <div className = "navigation">
-                        <label htmlFor = "r1" className = "bar"></label>
-                        <label htmlFor = "r2" className = "bar"></label>
-                        <label htmlFor = "r3" className = "bar"></label>
-                    </div>
-                </div>
-                <div className = "slider middle">
-                    <input type="radio" name = "r" id="r4" defaultChecked></input>
-                    <input type="radio" name = "r" id="r5"></input>
-                    <input type="radio" name = "r" id="r6"></input>
-                    <div className = "slides">
-                        <div className = "slide">
-                            <div>
-                                <h3>Выберите язык</h3>
-                                <img src = {slide1} alt = ""></img>
-                            </div>
-                        </div>
-                        <div className = "slide">
-                            <div>
-                                <h3>Смотрите подсказки по вводу</h3>
-                                <img src = {slide2} alt = ""></img>
-                            </div>
-                        </div>
-                        <div className = "slide">
-                            <div>
-                                <h3>Печатайте!</h3>
-                                <img src = {slide3} alt = ""></img>
-                            </div>
-                        </div>
-                    </div>
-                    <div className = "navigation">
-                        <label htmlFor = "r4" className = "bar"></label>
-                        <label htmlFor = "r5" className = "bar"></label>
-                        <label htmlFor = "r6" className = "bar"></label>
+                        <label htmlFor = "r1" className = "bar" id = "lb1"></label>
+                        <label htmlFor = "r2" className = "bar" id = "lb2"></label>
+                        <label htmlFor = "r3" className = "bar" id = "lb3"></label>
                     </div>
                 </div>
             </div>
