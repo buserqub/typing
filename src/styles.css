@@ -283,19 +283,19 @@
     }
     33.333% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1  );
     }
     50% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     66.667% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     83.333% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     100% {
       opacity: .8;
@@ -305,11 +305,11 @@
   @keyframes barAnimate2 {
     0% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1); 
     }  
     16.667% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     33.333% {
       opacity: .8;
@@ -321,33 +321,33 @@
     }
     66.667% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     83.333% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     100% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
   }
   @keyframes barAnimate3 {
     0% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }  
     16.667% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     33.333% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     50% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
     66.667% {
       opacity: .8;
@@ -359,9 +359,19 @@
     }
     100% {
       opacity: .5;
-      transform: scale(0.9);
+      transform: scale(1);
     }
   }
+  #lb1 {
+    animation: barAnimate 15s infinite;
+  }
+  #lb2 {
+    animation: barAnimate2 15s infinite;
+  }
+  #lb3 {
+    animation: barAnimate3 15s infinite;
+  }
+
 
   #r1:checked ~ .slides {
     margin-left: -0%;
@@ -370,7 +380,7 @@
   }
   #r1:checked ~ .navigation #lb1 {
     opacity: .8;
-      transform: scale(1.1);
+    transform: scale(1.1);
     animation: barAnimate 15s infinite;
     animation-delay: 5s;
   }
@@ -387,16 +397,37 @@
     animation: sliderAnimate2 15s infinite ease 0.04s;
     animation-delay: 5s;
   }
+  #r2:checked ~ .navigation #lb1 {
+    animation: barAnimate3 15s infinite;
+    animation-delay: 5s;
+  }
   #r2:checked ~ .navigation #lb2 {
     opacity: .8;
     transform: scale(1.1);
+    animation: barAnimate 15s infinite;
+    animation-delay: 5s;
+  }
+  #r2:checked ~ .navigation #lb3 {
+    animation: barAnimate2 15s infinite;
+    animation-delay: 5s;
   }
   #r3:checked ~ .slides {
     margin-left: -200%;
     animation: sliderAnimate3 15s infinite ease 0.04s;
     animation-delay: 5s;
   }
+  #r3:checked ~ .navigation #lb1 {
+    animation: barAnimate2 15s infinite;
+    animation-delay: 5s;
+  }
+  #r3:checked ~ .navigation #lb2 {
+    animation: barAnimate3 15s infinite;
+    animation-delay: 5s;
+  }
   #r3:checked ~ .navigation #lb3 {
     opacity: .8;
     transform: scale(1.1);
+    animation: none;
+    animation: barAnimate 15s infinite;
+    animation-delay: 5s;
   }
