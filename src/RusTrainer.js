@@ -7,7 +7,7 @@ export default function RusTrainer() {
 	return (
 		<div>
 			<div class = "text">
-			<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1></div>
+			<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing">Н</span><span id = "text">ачните печать!</span></h1></div>
 			</div>
 			<script src = {Controller}></script>
 			<br></br>
@@ -36,7 +36,7 @@ export default function RusTrainer() {
 					<div class = "key" id = "У">У</div>
 					<div class = "key" id = "К">К</div>
 					<div class = "key" id = "Е">Е</div>
-					<div class = "key" id = "Н">Н</div>
+					<div class = "pressed_key" id = "Н">Н</div>
 					<div class = "key" id = "Г">Г</div>
 					<div class = "key" id = "Ш">Ш</div>
 					<div class = "key" id = "Щ">Щ</div>
@@ -61,7 +61,7 @@ export default function RusTrainer() {
 					<div class = "flex_key" id = "ENTER">Enter</div>
 					</div>
 				<div class = "keyboard_row"  id ="row_4">
-					<div class = "flex_key" id = "LSHIFT">Shift</div>
+					<div class = "pressed_flex_key" id = "LSHIFT">Shift</div>
 					<div class = "key" id = "Я">Я</div>
 					<div class = "key" id = "Ч">Ч</div>
 					<div class = "key" id = "С">С</div>

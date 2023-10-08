@@ -41,7 +41,38 @@ function Home () {
                         <label htmlFor = "r3" className = "bar"></label>
                     </div>
                 </div>
+                <div className = "slider middle">
+                    <input type="radio" name = "r" id="r4" defaultChecked></input>
+                    <input type="radio" name = "r" id="r5"></input>
+                    <input type="radio" name = "r" id="r6"></input>
+                    <div className = "slides">
+                        <div className = "slide">
+                            <div>
+                                <h3>Выберите язык</h3>
+                                <img src = {slide1} alt = ""></img>
+                            </div>
+                        </div>
+                        <div className = "slide">
+                            <div>
+                                <h3>Смотрите подсказки по вводу</h3>
+                                <img src = {slide2} alt = ""></img>
+                            </div>
+                        </div>
+                        <div className = "slide">
+                            <div>
+                                <h3>Печатайте!</h3>
+                                <img src = {slide3} alt = ""></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div className = "navigation">
+                        <label htmlFor = "r4" className = "bar"></label>
+                        <label htmlFor = "r5" className = "bar"></label>
+                        <label htmlFor = "r6" className = "bar"></label>
+                    </div>
+                </div>
             </div>
+            
         </div>
     );
 }

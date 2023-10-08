@@ -122,7 +122,6 @@ function spawnHand(hand, key, top, left) {
 window.onload = function () {
 	if (String(window.location.href) !== link) {
 		stateSet();
-		refreshText();
 	}
 }
 

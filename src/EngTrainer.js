@@ -19,7 +19,7 @@ export default function EngTrainer() {
 	return (
 		<div>
 			<div class = "text">
-				<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing"></span><span id = "text"></span></h1></div>
+				<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing">S</span><span id = "text">tart typing!</span></h1></div>
 			</div>			
 			<script src = {Controller}></script>
 			<br></br>
@@ -60,7 +60,7 @@ export default function EngTrainer() {
 				<div class = "keyboard_row" id ="row_3">
 					<div class = "flex_key" id = "CL">CapsLock</div>
 					<div class = "key" id = "A">A</div>
-					<div class = "key" id = "S">S</div>
+					<div class = "pressed_key" id = "S">S</div>
 					<div class = "key" id = "D">D</div>
 					<div class = "key" id = "F">F</div>
 					<div class = "key" id = "G">G</div>
@@ -73,7 +73,7 @@ export default function EngTrainer() {
 					<div class = "flex_key" id = "ENTER">Enter</div>
 				</div>
 				<div class = "keyboard_row"  id ="row_4">
-					<div class = "flex_key" id = "LSHIFT">Shift</div>
+					<div class = "pressed_flex_key" id = "LSHIFT">Shift</div>
 					<div class = "key" id = "Z">Z</div>
 					<div class = "key" id = "X">X</div>
 					<div class = "key" id = "C">C</div>
