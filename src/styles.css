@@ -435,7 +435,6 @@
   .content {
     margin-top:18px;
     max-width: 1100px;
-    max-height: 600px;
     border: 8px solid #000;
     border-radius: 12px;
 
@@ -450,13 +449,12 @@
   .upperBlock .leftBlock {
     margin-left: auto;
     margin-right: auto;
-    min-width:700px;
-    width: 70%;
+    min-width:500px;
+    width: 50%;
   }
   .upperBlock .rightBlock {
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
+    margin: auto;
+    width: 50%;
   }
   .upperBlock .leftBlock img {
     height: 100%;
@@ -466,4 +464,18 @@
     background-color: rgb(236,253,236);
     display: flex;
     flex-wrap: wrap;
+  }
+  .bottomBlock .rightBlock {
+    margin-left: auto;
+    margin-right: auto;
+    min-width:500px;
+    width: 50%;
+  }
+  .bottomBlock .leftBlock {
+    margin: auto;
+    width: 50%;
+  }
+  .bottomBlock .rightBlock img {
+    height: 100%;
+    width: 100%
   }
