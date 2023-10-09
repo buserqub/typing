@@ -163,9 +163,10 @@
     margin-top:18px;
     max-width: 1100px;
     max-height: 600px;
-    overflow: hidden;
     border: 8px solid #000;
     border-radius: 12px;
+    
+    overflow: hidden;
   }
   .middle {
     position: relative;
@@ -283,7 +284,7 @@
     }
     33.333% {
       opacity: .5;
-      transform: scale(1  );
+      transform: scale(1);
     }
     50% {
       opacity: .5;
@@ -430,4 +431,39 @@
     animation: none;
     animation: barAnimate 15s infinite;
     animation-delay: 5s;
+  }
+  .content {
+    margin-top:18px;
+    max-width: 1100px;
+    max-height: 600px;
+    border: 8px solid #000;
+    border-radius: 12px;
+
+    font-weight: bold;
+    text-align: justify;
+  }
+  .upperBlock {
+    background-color: rgb(236,253,236);
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .upperBlock .leftBlock {
+    margin-left: auto;
+    margin-right: auto;
+    min-width:700px;
+    width: 70%;
+  }
+  .upperBlock .rightBlock {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+  }
+  .upperBlock .leftBlock img {
+    height: 100%;
+    width: 100%
+  }
+  .bottomBlock {
+    background-color: rgb(236,253,236);
+    display: flex;
+    flex-wrap: wrap;
   }
