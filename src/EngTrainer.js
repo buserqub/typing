@@ -19,7 +19,7 @@ export default function EngTrainer() {
 	return (
 		<div>
 			<div class = "text">
-				<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing">S</span><span id = "text">tart typing!</span></h1></div>
+				<div><h1><span id = "typed"></span><span id = "typing">S</span><span id = "text">tart typing!</span></h1></div>
 			</div>			
 			<script src = {Controller}></script>
 			<br></br>

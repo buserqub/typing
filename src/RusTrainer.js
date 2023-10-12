@@ -7,7 +7,7 @@ export default function RusTrainer() {
 	return (
 		<div>
 			<div class = "text">
-			<div><h1 class = "main_text"><span id = "typed"></span><span id = "typing">Н</span><span id = "text">ачните печать!</span></h1></div>
+			<div><h1><span id = "typed"></span><span id = "typing">Н</span><span id = "text">ачните печать!</span></h1></div>
 			</div>
 			<script src = {Controller}></script>
 			<br></br>

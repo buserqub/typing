@@ -17,7 +17,6 @@ function Home () {
                     <input type="radio" name = "r" id="r1"></input>
                     <input type="radio" name = "r" id="r2"></input>
                     <input type="radio" name = "r" id="r3"></input>
-                    <input type="radio" name = "r" id="r4"></input>
                     <div className = "slides s1">
                         <div className = "slide">
                             <div>
