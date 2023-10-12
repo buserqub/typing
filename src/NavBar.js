@@ -7,9 +7,9 @@ function NavBar () {
         <div>
             <div className='menu middle'>
                 <div className='box'>
-                    <div className='stick middle' name="s" id="s1"></div>
-                    <div className='stick middle' name="s" id="s2"></div>
-                    <div className='stick middle' name="s" id="s3"></div>
+                    <ul>
+                        <li>MENU</li>
+                    </ul>
                 </div>
                 <ul>
                     <li>
