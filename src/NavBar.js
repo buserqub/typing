@@ -4,7 +4,7 @@ import React from 'react'
 
 function NavBar () {
     return (
-        <div>
+        <header>
             <div className='menu middle'>
                 <div className='box'>
                     <ul>
@@ -23,7 +23,7 @@ function NavBar () {
                     </li>
                 </ul>
             </div>
-        </div>
+        </header>
         
     );
 }

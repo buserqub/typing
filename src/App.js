@@ -4,6 +4,7 @@ import Home from './Home';
 import RusTrainer from './RusTrainer';
 import EngTrainer from './EngTrainer';
 import NavBar from './NavBar';
+import Credits from './Credits';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/eng' element={<EngTrainer />} />
       </Routes>
     </BrowserRouter>
+    <Credits />
     </>
   );
 }
