@@ -15,10 +15,7 @@
   }
   footer {
     height: 230px;
-    width: 1116px;
     left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
     bottom: 0;
   }
   footer .div {
@@ -562,8 +559,6 @@
 
     font-weight: bold;
     text-align: justify;
-
-    margin-bottom: 230px;
   }
   .upperBlock {
     background-color: rgb(236,253,236);
