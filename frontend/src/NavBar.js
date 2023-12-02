@@ -13,6 +13,9 @@ function NavBar () {
             <li>
                 <a href = '/eng'>Eng</a>
             </li>
+            <li>
+                <a href = '/registration'>Sign up</a>
+            </li>
         </ul>
     );
 }

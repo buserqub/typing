@@ -15,6 +15,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/ru' element={<RuTrainer />} />
         <Route path='/eng' element={<EngTrainer />} />
+        <Route path='/registration' element={<Registration />} />
         <Route path='/ru/text_add' element={<RuTextAdd />} />
       </Routes>
     </BrowserRouter>
