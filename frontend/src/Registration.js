@@ -1,0 +1,49 @@
+import './styles.css';
+import React from 'react';
+import RuTextAdd from './RuTextAdd.js';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { buttonClick } from './Controller.js';
+
+function handleClick(e) {
+    console.log('Была кнопка');
+}
+function show_hide_password(target){
+    var input = document.getElementById('password');
+    if (input != null) {
+        if (input.type == 'password') {
+            target.class = 'password_control_view';
+            input.type = 'text';
+        } else {
+            target.class = 'password_control';
+            input.type = 'password';
+        }
+        return false;
+    }
+	return false;
+}
+
+export default class Registration extends React.Component {
+	render () {
+        return (
+            <div class = "sign_up">
+                <div class = "email">
+                    <h1>Введите электронную почту</h1>
+                    <input class = "field_input" id = "email" type="text"></input>
+                </div>
+
+                <div class = "login">
+                    <h1>Введите логин</h1>
+                    <input class = "field_input" id = "login" type="text"></input>
+                </div>
+
+                <div class = "password">
+                    <h1>Введите пароль</h1>
+                    <input class = "field_input" id = "password" placeholder="" type = "password"></input>
+                    <a href="#" class="password_control" onclick= {show_hide_password(this)}></a>
+                </div>
+
+                <br></br>
+            </div>
+        )
+    }
+}

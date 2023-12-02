@@ -5,6 +5,8 @@ import refreshText from './Controller';
 import RuTextAdd from './RuTextAdd';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
+
+
 export default class RuTrainer extends React.Component {
 	render () {
 		return (

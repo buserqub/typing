@@ -4,6 +4,7 @@ import Home from './Home';
 import RuTrainer from './RuTrainer';
 import EngTrainer from './EngTrainer';
 import RuTextAdd from './RuTextAdd';
+import Registration from './Registration';
 import NavBar from './NavBar';
 
 function App() {
