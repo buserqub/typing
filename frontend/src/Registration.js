@@ -3,23 +3,33 @@ import React from 'react';
 import RuTextAdd from './RuTextAdd.js';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { buttonClick } from './Controller.js';
+import eye from './images/eye.png';
+import blink from './images/blink2.png';
+
 
 function handleClick(e) {
     console.log('Была кнопка');
 }
-function show_hide_password(target){
+function show_hide_password(){
     var input = document.getElementById('password');
     if (input != null) {
         if (input.type == 'password') {
-            target.class = 'password_control_view';
+            document.getElementsByClassName('password_control')[0].src = blink;
             input.type = 'text';
         } else {
-            target.class = 'password_control';
+            document.getElementsByClassName('password_control')[0].src = eye;
             input.type = 'password';
         }
         return false;
     }
 	return false;
+}
+
+function Image() {
+    function handleClick () {
+        show_hide_password();
+    }
+    return <img class = "password_control" onClick={handleClick} src = {eye}></img>;
 }
 
 export default class Registration extends React.Component {
@@ -39,7 +49,7 @@ export default class Registration extends React.Component {
                 <div class = "password">
                     <h1>Введите пароль</h1>
                     <input class = "field_input" id = "password" placeholder="" type = "password"></input>
-                    <a href="#" class="password_control" onclick= {show_hide_password(this)}></a>
+                    <Image></Image>
                 </div>
 
                 <br></br>
