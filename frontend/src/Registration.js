@@ -10,26 +10,29 @@ import blink from './images/blink2.png';
 function handleClick(e) {
     console.log('Была кнопка');
 }
-function show_hide_password(){
-    var input = document.getElementById('password');
-    if (input != null) {
-        if (input.type == 'password') {
-            document.getElementsByClassName('password_control')[0].src = blink;
-            input.type = 'text';
-        } else {
-            document.getElementsByClassName('password_control')[0].src = eye;
-            input.type = 'password';
-        }
-        return false;
-    }
-	return false;
-}
 
 function Image() {
     function handleClick () {
-        show_hide_password();
+        var input = document.getElementById('password');
+        if (input != null) {
+            if (input.type == 'password') {
+                document.getElementsByClassName('password_control')[0].src = blink;
+                input.type = 'text';
+            } else {
+                document.getElementsByClassName('password_control')[0].src = eye;
+                input.type = 'password';
+            }
+            return false;
+        }
+	    return false;
     }
     return <img class = "password_control" onClick={handleClick} src = {eye}></img>;
+}
+function Button () {
+    function handleClick () {
+
+    }
+    return <button class = "registration_button" onClick = {handleClick}>Зарегистрироваться</button>
 }
 
 export default class Registration extends React.Component {
@@ -51,6 +54,8 @@ export default class Registration extends React.Component {
                     <input class = "field_input" id = "password" placeholder="" type = "password"></input>
                     <Image></Image>
                 </div>
+                <Button></Button>
+
 
                 <br></br>
             </div>

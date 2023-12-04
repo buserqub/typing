@@ -171,7 +171,18 @@
   .password_control {
     display: inline-block;
     position: absolute;
-    bottom: 7px ;
+    bottom: 7px;
     right: 0px;
     width: 26px;
+  }
+  .registration_button {
+    margin: 25px;
+    width: 200px;
+    height: 50px;
+  }
+  input {
+    font-size:24px;
+  }
+  button {
+    font-size:18px;
   }
