@@ -1,12 +1,13 @@
+const mysql = require("mysql2");
 const express = require("express");
 const router = express.Router();
 const Eng = require("./eng");
 const Ru = require("./ru");
 
 let host = "localhost";
-let user = "user";
+let user = "root";
 let db = "mydb";
-let pass = "2378783";
+let pass = "1234";
 
 function open () {
     const connection = mysql.createConnection({
@@ -14,17 +15,22 @@ function open () {
         user: user,
         database: db,
         password: pass
-      });
+    });
       
-      connection.query("SELECT * FROM User",
-        function(err, results, fields) {
-          console.log(err);
-          console.log(results); // собственно данные
-          console.log(fields); // мета-данные полей 
-      });
-      
-      connection.end();
+    const sql = `INSERT INTO User(UserName, Password) VALUES('buser', 1234)`;
+
+    connection.query(sql, function(err, results) {
+        if(err) console.log(err);
+        console.log(results);
+    });   
+       
+    connection.end();
 }
+open();
+
+router.get("/registration", (req, res) => {
+    open();
+});
 
 router.get("/ru/add", (req, res) => {
     Eng.find({})
