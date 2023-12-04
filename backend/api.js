@@ -3,36 +3,40 @@ const express = require("express");
 const router = express.Router();
 const Eng = require("./eng");
 const Ru = require("./ru");
+//const { get } = require("mongoose");
 
 let host = "localhost";
 let user = "root";
 let db = "mydb";
 let pass = "1234";
 
-function open () {
-    const connection = mysql.createConnection({
-        host: host,
-        user: user,
-        database: db,
-        password: pass
-    });
+const connection = mysql.createConnection({
+    host: host,
+    user: user,
+    database: db,
+    password: pass
+});
       
-    const sql = `INSERT INTO User(UserName, Password) VALUES('buser', 1234)`;
-
-    connection.query(sql, function(err, results) {
+//const sql = `INSERT INTO User(UserName, Password) VALUES('buser', 1234)`;
+router.get("/api/", (req, res) => {
+    res.send(data);
+    console.log("Welcome here!");
+});
+router.get("/api/users/", (req, res) => {
+    /*pool.query("SELECT * FROM User", function(err, data) {
+        if(err) return console.log(err);
+        res.send(data);
+    });*/
+    pool.query("SELECT * FROM User",  function(err, results) {
         if(err) console.log(err);
-        console.log(results);
-    });   
-       
-    connection.end();
-}
-open();
-
-router.get("/registration", (req, res) => {
-    open();
+        const users = results;
+        for(let i=0; i < users.length; i++){
+          console.log(users[i].name);
+        }
+    });
 });
 
-router.get("/ru/add", (req, res) => {
+router.post("/api/users", (req, res) => {
     Eng.find({})
         .then(eng => {
             res.setHeader('Access-Control-Allow-Origin', '*');
