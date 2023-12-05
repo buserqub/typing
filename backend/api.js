@@ -45,6 +45,9 @@ router.post("/users", (req, res) => {
         req.body.password,
         req.body.email,
     ];
+    console.log(req.body);
+    console.log(values);
+
     connection.query(sql, [values], (err, data) => {
         //return console.log(req);
         if(err) return res.json("Failed to INSERT");

@@ -6,6 +6,9 @@ const app = express();
 
 const mysql = require("mysql2");
 
+const cors = require("cors");
+app.use(cors());
+
 app.use(bodyParser.json());
 app.use("/api", require("./api"))
 
