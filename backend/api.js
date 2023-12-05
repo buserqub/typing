@@ -18,31 +18,38 @@ const connection = mysql.createConnection({
 });
       
 //const sql = `INSERT INTO User(UserName, Password) VALUES('buser', 1234)`;
-router.get("/api/", (req, res) => {
+router.get("/", (req, res) => {
     res.send(data);
     console.log("Welcome here!");
 });
-router.get("/api/users/", (req, res) => {
+router.get("/users", (req, res) => {
     /*pool.query("SELECT * FROM User", function(err, data) {
         if(err) return console.log(err);
         res.send(data);
     });*/
-    pool.query("SELECT * FROM User",  function(err, results) {
-        if(err) console.log(err);
-        const users = results;
+    var sql = "SELECT * FROM User"
+    connection.query(sql, (err, data) => {
+        if(err) return res.json("Failed to SELECT");
+        return res.json(data);
+        const users = data;
         for(let i=0; i < users.length; i++){
           console.log(users[i].name);
         }
     });
 });
-
-router.post("/api/users", (req, res) => {
-    Eng.find({})
-        .then(eng => {
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-            res.send(eng);
-        });
+router.post("/users", (req, res) => {
+    //var sql = "INSERT INTO User(UserName, Password, Email) VALUES (" + req.username + ", " + req.password + ", " + req.email + ")";
+    var sql = "INSERT INTO User(UserName, Password, Email) VALUES (?)";
+    values = [
+        req.body.username,
+        req.body.password,
+        req.body.email,
+    ];
+    connection.query(sql, [values], (err, data) => {
+        //return console.log(req);
+        if(err) return res.json("Failed to INSERT");
+        return console.log("Пользователь зарегистрирован");
+    });
 });
 router.get("/ru", (req, res) => {
     Ru.find({})
