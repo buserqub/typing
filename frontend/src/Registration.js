@@ -28,9 +28,9 @@ function Button () {
     async function HandleClick () {
         try {
             let user = {
-                username: 'buser', //document.getElementById('login').value,
-                password: 1234,//document.getElementById('password').value,
-                email: 'buser@bk.ru'//document.getElementById('email').value,
+                username: document.getElementById('login').value,
+                password: document.getElementById('password').value,
+                email: document.getElementById('email').value,
             }
             const res = await fetch('http://localhost:3010/api/' + 'users', {
                 method: "POST",
@@ -39,8 +39,6 @@ function Button () {
                 },
                 body: JSON.stringify (user)
             })
-            let result = await res.json();
-            return (result);
         }catch(err) {
             console.log(err);
         }
