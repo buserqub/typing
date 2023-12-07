@@ -16,42 +16,58 @@ const connection = mysql.createConnection({
     database: db,
     password: pass
 });
-      
-//const sql = `INSERT INTO User(UserName, Password) VALUES('buser', 1234)`;
+
+const getAllUsers = async (req, res, next) => {
+    var sql = "SELECT * FROM User";
+    result = await connection.query(sql, (err, data) => {
+        if(err) return res.json("Failed to SELECT");
+        return res.json(data);
+    });
+    res.send(result);
+}
+
 router.get("/", (req, res) => {
     res.send(data);
     console.log("Welcome here!");
 });
-router.get("/users", (req, res) => {
-    /*pool.query("SELECT * FROM User", function(err, data) {
-        if(err) return console.log(err);
-        res.send(data);
-    });*/
+router.get("/users", getAllUsers => {});
+router.post("/users", (req, res) => {
     var sql = "SELECT * FROM User"
+    var count = 0;
+
     connection.query(sql, (err, data) => {
-        if(err) return res.json("Failed to SELECT");
-        return res.json(data);
+        if(err)
+        {
+            console.log("Failed to SELECT");
+            return res.json("Failed to SELECT");
+        }
+        count = data.length;
+        console.log(data.length);
+        return data.length;
+
         const users = data;
         for(let i=0; i < users.length; i++){
           console.log(users[i].name);
         }
-    });
-});
-router.post("/users", (req, res) => {
+    }, next);
+
     //var sql = "INSERT INTO User(UserName, Password, Email) VALUES (" + req.username + ", " + req.password + ", " + req.email + ")";
-    var sql = "INSERT INTO User(UserName, Password, Email) VALUES (?)";
+    sql = "INSERT INTO User(ID, UserName, Password, Email) VALUES (?)";
     values = [
+        count,
         req.body.username,
         req.body.password,
         req.body.email,
     ];
-    console.log(req.body);
-    console.log(values);
 
+    console.log(values);
     connection.query(sql, [values], (err, data) => {
-        //return console.log(req);
-        if(err) return res.json("Failed to INSERT");
-        return console.log("Пользователь зарегистрирован");
+        if(err) {
+            console.log("Failed to INSERT");
+            return res.json("Failed to INSERT");
+        }
+        console.log("Пользователь зарегистрирован");
+        return res.json("Пользователь зарегистрирован");
     });
 });
 router.get("/ru", (req, res) => {
