@@ -29,10 +29,9 @@ function Button () {
         try {
             let user = {
                 username: document.getElementById('login').value,
-                password: document.getElementById('password').value,
-                email: document.getElementById('email').value
+                password: document.getElementById('password').value
             }
-            const res = await fetch('http://localhost:3010/api/' + 'users', {
+            const res = await fetch('http://localhost:3010/api/' + 'login', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
@@ -56,14 +55,10 @@ function Button () {
     return <button class = "registration_button" onClick = {HandleClick}>Зарегистрироваться</button>
 }
 
-export default class Registration extends React.Component {
+export default class Authorization extends React.Component {
 	render () {
         return (
             <div class = "sign_up">
-                <div class = "email">
-                    <h1>Введите электронную почту</h1>
-                    <input class = "field_input" id = "email" type="text"></input>
-                </div>
 
                 <div class = "login">
                     <h1>Введите логин</h1>

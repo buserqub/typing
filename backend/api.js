@@ -7,7 +7,7 @@ const Ru = require("./ru");
 
 let host = "localhost";
 let user = "root";
-let db = "mydb";
+let db = "typingdb";
 let pass = "1234";
 
 const connection = mysql.createConnection({
@@ -16,21 +16,18 @@ const connection = mysql.createConnection({
     database: db,
     password: pass
 });
-      
-//const sql = `INSERT INTO User(UserName, Password) VALUES('buser', 1234)`;
+
 router.get("/", (req, res) => {
     res.send(data);
     console.log("Welcome here!");
 });
 router.get("/users", (req, res) => {
-    /*pool.query("SELECT * FROM User", function(err, data) {
-        if(err) return console.log(err);
-        res.send(data);
-    });*/
-    var sql = "SELECT * FROM User"
+    var sql = "SELECT COUNT(*) AS count FROM User";
     connection.query(sql, (err, data) => {
         if(err) return res.json("Failed to SELECT");
+        console.log(data[0].count);
         return res.json(data);
+
         const users = data;
         for(let i=0; i < users.length; i++){
           console.log(users[i].name);
@@ -38,6 +35,7 @@ router.get("/users", (req, res) => {
     });
 });
 router.post("/users", (req, res) => {
+
     //var sql = "INSERT INTO User(UserName, Password, Email) VALUES (" + req.username + ", " + req.password + ", " + req.email + ")";
     var sql = "INSERT INTO User(UserName, Password, Email) VALUES (?)";
     values = [
@@ -45,16 +43,23 @@ router.post("/users", (req, res) => {
         req.body.password,
         req.body.email,
     ];
-    console.log(req.body);
-    console.log(values);
 
+    console.log(values);
     connection.query(sql, [values], (err, data) => {
-        //return console.log(req);
-        if(err) return res.json("Failed to INSERT");
-        return console.log("Пользователь зарегистрирован");
+        if(err) {
+            console.log("Failed to INSERT", err);
+            return res.json(err);
+        }
+        console.log("Пользователь зарегистрирован");
+        return res.json("Пользователь зарегистрирован");
     });
 });
-router.get("/ru", (req, res) => {
+router.get("/", (req, res) => {
+    res.send(data);
+    console.log("Welcome here!");
+});
+
+/*router.get("/ru", (req, res) => {
     Ru.find({})
         .then(ru => {
             res.setHeader('Access-Control-Allow-Origin', '*');
@@ -94,5 +99,5 @@ router.delete("/eng/:id", (req, res) => {
 });
 router.delete("/ru/:id", (req, res) => {
     res.send({method: "DELETE"});
-});
+});*/
 module.exports = router;
