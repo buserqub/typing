@@ -39,12 +39,11 @@ function Button () {
                 },
                 body: JSON.stringify (user)
             })
-            let result = await res.json();
-            if (result.sqlStatus == "45000")
-                alert(result.sqlMessage);
-            else
-                alert(result);
-            
+            let result = await res.json()
+            .then((result) => {
+                if (result)
+                    alert(result.sqlMessage);
+            });
         } catch(err) {
             console.log(err);
         }
@@ -53,7 +52,7 @@ function Button () {
         let result = await response.json();
         console.log(result);*/
     }
-    return <button class = "registration_button" onClick = {HandleClick}>Зарегистрироваться</button>
+    return <button class = "sign_button" onClick = {HandleClick}>Зарегистрироваться</button>
 }
 
 export default class Registration extends React.Component {

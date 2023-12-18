@@ -52,7 +52,7 @@ function Button () {
         let result = await response.json();
         console.log(result);*/
     }
-    return <button class = "registration_button" onClick = {HandleClick}>Зарегистрироваться</button>
+    return <button class = "sign_button" onClick = {HandleClick}>Авторизоваться</button>
 }
 
 export default class Authorization extends React.Component {

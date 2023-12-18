@@ -6,8 +6,10 @@ import EngTrainer from './EngTrainer';
 import RuTextAdd from './RuTextAdd';
 import Registration from './Registration';
 import NavBar from './NavBar';
+import Authorization from './Authorization';
 
 function App() {
+
   return (
     <>
     <NavBar />
@@ -16,7 +18,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/ru' element={<RuTrainer />} />
         <Route path='/eng' element={<EngTrainer />} />
-        <Route path='/registration' element={<Registration />} />
+        <Route path='/reg' element={<Registration />} />
+        <Route path='/auth' element={<Authorization />} />
         <Route path='/ru/text_add' element={<RuTextAdd />} />
       </Routes>
     </BrowserRouter>
