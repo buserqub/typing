@@ -42,7 +42,10 @@ function Button () {
             let result = await res.json()
             .then((result) => {
                 if (result)
-                    alert(result.sqlMessage);
+                    if (result.sqlStatus == "45000")
+                        alert(result.sqlMessage);
+                    else
+                        alert(result);
             });
         } catch(err) {
             console.log(err);

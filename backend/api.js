@@ -76,7 +76,8 @@ router.post("/users", (req, res) => {
     connection.query(sql, [values], (err, data) => {
         if(err) {
             console.log("Failed to INSERT", err);
-            return res.json("Failed to INSERT");
+            if (err.sqlMessage)
+                return res.json(err.sqlMessage);
         }
         console.log("Пользователь зарегистрирован");
         return res.json("Пользователь зарегистрирован");

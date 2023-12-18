@@ -38,11 +38,14 @@ function Button () {
                 },
                 body: JSON.stringify (user)
             })
-            let result = await res.json();
-            if (result.sqlStatus == "45000")
-                alert(result.sqlMessage);
-            else
-                alert(result);
+            let result = await res.json()
+            .then((result) => {
+                if (result)
+                    if (result.sqlStatus == "45000")
+                        alert(result.sqlMessage);
+                    else
+                        alert(result);
+            });
             
         } catch(err) {
             console.log(err);
