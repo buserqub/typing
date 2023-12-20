@@ -46,9 +46,28 @@ connection.query(sql, (err, data) => {
     return console.log("Success to CREATE TRIGGER after_insert_user");
 })*/
 
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }  
+
 router.get("/", (req, res) => {
     res.send(data);
     console.log("Welcome here!");
+});
+
+router.post("/text", (req, res) => {
+    sql = "SELECT * FROM Text WHERE Language = ?";
+    connection.query(sql, [req.body.language], (err, data) => {
+        if (err) {
+            console.log("Failed to SELECT", err);
+            return res.json(err);
+        }
+        console.log(data);
+        if (data[0])
+            return res.json(data[getRandomInt(data.length)].Text);
+        res.message = 'There is no data found';
+        return res.json();
+    });
 });
 
 router.get("/users", (req, res) => {
@@ -64,6 +83,7 @@ router.get("/users", (req, res) => {
         }
     });
 });
+
 router.post("/users", (req, res) => {
     sql = "INSERT INTO User(UserName, Password, Email) VALUES (?)";
     values = [
@@ -91,8 +111,9 @@ router.post("/login", (req, res) => {
     sql = "SELECT * FROM User WHERE username = ? AND password = ?"
     connection.query(sql, [username, password], (err, data) => {
         if (err) {
-            console.log("Failed to SELECT", err)
-            return res.json("Failed to SELECT");
+            console.log("Failed to SELECT", err);
+            if (err.sqlMessage)
+                return res.json(err.sqlMessage);
         }
         console.log("Авторизация прошла успешно", data);
         return res.json(data);

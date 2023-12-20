@@ -55,7 +55,7 @@ function Button () {
         let result = await response.json();
         console.log(result);*/
     }
-    return <button class = "sign_button" onClick = {HandleClick}>Зарегистрироваться</button>
+    return <button onClick = {HandleClick}>Зарегистрироваться</button>
 }
 
 export default class Registration extends React.Component {

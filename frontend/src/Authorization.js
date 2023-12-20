@@ -40,11 +40,15 @@ function Button () {
             })
             let result = await res.json()
             .then((result) => {
+                console.log(result);
                 if (result)
                     if (result.sqlStatus == "45000")
                         alert(result.sqlMessage);
-                    else
-                        alert(result);
+                    else {
+                        let regDate = result[0].RegistrationDate.substring(0, result[0].RegistrationDate.indexOf('T'));
+                        alert("Ваш ID: " + result[0].ID + "\nДата регистрации: " + regDate); 
+                    }
+                        
             });
             
         } catch(err) {

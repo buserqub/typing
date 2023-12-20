@@ -628,17 +628,42 @@ async function refreshText () {
 
     init();
 }
-async function getData (state) {
-	let response = await fetch('http://localhost:3010/api/' + state);
-	let result = await response.json();
-	/*fetch('http://localhost:3010/api/' + state)
-		.then (res => res.json)
-		.then (result => result.data);*/
-	let str = result[getRandomInt(result.length - 1)].text;
+async function getData () {
+	let text;
+	if (state == ru)
+		text = {
+			language: 'Rus'
+		}
+	else
+		text = {
+			language: 'Eng'
+		}
+	let str;
+	try {
+		const res = await fetch('http://localhost:3010/api/' + 'text', {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+			body: JSON.stringify (text)
+		}).then ((res) => {
+			if (res.message == 'There is no data found')
+				throw (new Error());
+			str = res.json();
+		});
+	}
+	catch (err) {
+		console.log(err);
+		if (state == ru)
+			str = 'Начните печать!';
+		else
+			str = 'Start typing!';
+	}
+
 	return str;
 }
 async function readRandomText () {
-    let str = await getData(state);
+    let str = await getData();
 
     //let mydata = JSON.parse(JSON.stringify(data));
 	//let i = getRandomInt(mydata.length - 1);
