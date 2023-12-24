@@ -42,7 +42,7 @@ function Button () {
             .then((result) => {
                 console.log(result);
                 if (result)
-                    if (result.sqlStatus == "45000")
+                    if (result.sqlState == "45000")
                         alert(result.sqlMessage);
                     else {
                         let regDate = result[0].RegistrationDate.substring(0, result[0].RegistrationDate.indexOf('T'));

@@ -22,7 +22,7 @@ const left = "left";
 let link = "http://localhost:3000/";
 let registryState = upper;
 let state = ru;
-let alphabit = [
+let alphabet = [
 	'а',
 	'б',
 	'в',
@@ -65,9 +65,9 @@ let alphabit = [
 ];
 let shiftHand = left;
 
-function switchAlphabit () {
+function switchAlphabet () {
 	if (state === ru)
-	alphabit = [
+	alphabet = [
 		'а',
 		'б',
 		'в',
@@ -109,7 +109,7 @@ function switchAlphabit () {
 		'\"'
 	];
 	else
-		alphabit = [
+		alphabet = [
 			'a',
 			'b',
 			'c',
@@ -146,12 +146,12 @@ function switchAlphabit () {
 export async function buttonClick (str) {
 	let frequency = [];
 
-	for (let i = 0; i < alphabit.length; i++) 
+	for (let i = 0; i < alphabet.length; i++) 
 	{
 		let q = 0;
 		for (let j = 0; j < str.length; j++) 
 		{
-			if (str[j].toLowerCase() === alphabit[i])
+			if (str[j].toLowerCase() === alphabet[i])
 				q++;
 		}
 			
@@ -160,7 +160,7 @@ export async function buttonClick (str) {
 
 	let data = {
 		text: str,
-		symbols: alphabit,
+		symbols: alphabet,
 		frequency: frequency
 	}
 
@@ -276,7 +276,7 @@ function stateSet () {
 	else
 		if (String(window.location.href) === link + eng)
 			state = eng;
-	switchAlphabit();
+	switchAlphabet();
 }
 
 function init () {
@@ -615,12 +615,13 @@ function highlight (id) {
 	switchHand(id);
 }
 async function refreshText () {
-	let cursor = document.getElementById("typing");
-	let typed = document.getElementById("typed");
-	let text = document.getElementById("text");
 	let str = "";
 
 	str = await readRandomText();
+	let cursor = document.getElementById("typing");
+	let typed = document.getElementById("typed");
+	let text = document.getElementById("text");
+
 
 	cursor.innerHTML = str.substring(0, 1);
 	text.innerHTML = str.slice(1);
@@ -629,24 +630,20 @@ async function refreshText () {
     init();
 }
 async function getData () {
-	let text;
+	let textState;
 	if (state == ru)
-		text = {
-			language: 'Rus'
-		}
+		textState = 'rus';
 	else
-		text = {
-			language: 'Eng'
-		}
+		textState = 'eng';
 	let str;
 	try {
-		const res = await fetch('http://localhost:3010/api/' + 'text', {
-			method: "POST",
+		const res = await fetch('http://localhost:3010/api/' + 'text/' + textState, {
+			method: "GET",
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
-			},
-			body: JSON.stringify (text)
-		}).then ((res) => {
+			}
+		})
+		.then ((res) => {
 			if (res.message == 'There is no data found')
 				throw (new Error());
 			str = res.json();

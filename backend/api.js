@@ -55,9 +55,10 @@ router.get("/", (req, res) => {
     console.log("Welcome here!");
 });
 
-router.post("/text", (req, res) => {
+
+router.get("/text/rus", (req, res) => {
     sql = "SELECT * FROM Text WHERE Language = ?";
-    connection.query(sql, [req.body.language], (err, data) => {
+    connection.query(sql, ['Rus'], (err, data) => {
         if (err) {
             console.log("Failed to SELECT", err);
             return res.json(err);
@@ -67,6 +68,37 @@ router.post("/text", (req, res) => {
             return res.json(data[getRandomInt(data.length)].Text);
         res.message = 'There is no data found';
         return res.json();
+    });
+});
+
+router.get("/text/eng", (req, res) => {
+    sql = "SELECT * FROM Text WHERE Language = ?";
+    connection.query(sql, ['Eng'], (err, data) => {
+        if (err) {
+            console.log("Failed to SELECT", err);
+            return res.json(err);
+        }
+        console.log(data);
+        if (data[0])
+            return res.json(data[getRandomInt(data.length)].Text);
+        res.message = 'There is no data found';
+        return res.json();
+    });
+});
+
+router.post("/text/rus", (req, res) => {
+    sql = "INSERT INTO Text (Language, Text, User_ID) VALUES ('Rus', ?, 1)";
+    connection.query(sql, [req.body.text], (err, data) => {
+        if (err) {
+            console.log("Failed to INSERT", err);
+            return res.json({
+                sqlState: err.sqlState,
+                sqlMessage: err.sqlMessage
+            }); 
+        }
+        return res.json({
+            message: 'Success'
+        });
     });
 });
 
